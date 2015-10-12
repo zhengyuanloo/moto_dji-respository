@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 左右滑入式 -->
+<set xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <translate
+        android:duration="1000"
+        android:fromXDelta="0"
+        android:toXDelta="-100%p" />
+
+</set><!-- From: file:/C:/Users/NDTW36/Desktop/New_DJI/dJISDKLIB/src/main/res/anim/core_push_left_out.xml --><!-- From: file:/C:/Users/NDTW36/Desktop/New_DJI/dJISDKLIB/build/intermediates/bundles/debug/res/anim/core_push_left_out.xml -->
