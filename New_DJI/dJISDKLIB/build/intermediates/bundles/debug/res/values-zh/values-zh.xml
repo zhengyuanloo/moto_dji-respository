@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/C:/Users/NDTW36/Desktop/New_DJI/dJISDKLIB/src/main/res/values-zh/strings.xml -->
+    <!-- From: file:/C:/Users/NDTW36/Documents/GitHub/moto_dji-respository/New_DJI/dJISDKLIB/src/main/res/values-zh/strings.xml -->
     <eat-comment/>
     <string name="DESCRIPTION_RESULT_OK">成功</string>
     <string name="DetailCheckPermissionSuccess">获取权限成功</string>

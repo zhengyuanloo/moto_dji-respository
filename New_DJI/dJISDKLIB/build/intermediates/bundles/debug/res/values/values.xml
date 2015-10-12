@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/C:/Users/NDTW36/Desktop/New_DJI/dJISDKLIB/src/main/res/values/color.xml -->
+    <!-- From: file:/C:/Users/NDTW36/Documents/GitHub/moto_dji-respository/New_DJI/dJISDKLIB/src/main/res/values/color.xml -->
     <eat-comment/>
     <color name="midware_white_half">#77ffffff</color>
     <declare-styleable name="DJITextView"><attr name="djiTextFace"><enum name="demi" value="0"/><enum name="nlight" value="1"/><enum name="nbold" value="2"/><enum name="bold" value="3"/></attr></declare-styleable>
-    <!-- From: file:/C:/Users/NDTW36/Desktop/New_DJI/dJISDKLIB/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/NDTW36/Documents/GitHub/moto_dji-respository/New_DJI/dJISDKLIB/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="DESCRIPTION_RESULT_OK">OK</string>
     <string name="DetailCheckPermissionSuccess">Check permission successful</string>
@@ -70,7 +70,7 @@
     <string name="ErrorDetailCheckPermissionServerUnknown">Server unkown error</string>
     <string name="ErrorDetailCheckPermissionServerWriteError">Server data abnormal</string>
     <string name="ErrorDetailCheckPermissionUnsportAesEncrypt">AES 256 encrypt unsupport</string>
-    <!-- From: file:/C:/Users/NDTW36/Desktop/New_DJI/dJISDKLIB/src/main/res/values/styles.xml -->
+    <!-- From: file:/C:/Users/NDTW36/Documents/GitHub/moto_dji-respository/New_DJI/dJISDKLIB/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--

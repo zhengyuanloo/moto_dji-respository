@@ -7,4 +7,4 @@
            android:fromYScale="1.0" android:toYScale="2.0"
            android:pivotX="50%p" android:pivotY="50%p"
            android:duration="100" />
-</set><!-- From: file:/C:/Users/NDTW36/Desktop/New_DJI/dJISDKLIB/src/main/res/anim/core_zoom_exit_back.xml --><!-- From: file:/C:/Users/NDTW36/Desktop/New_DJI/dJISDKLIB/build/intermediates/bundles/debug/res/anim/core_zoom_exit_back.xml -->
+</set><!-- From: file:/C:/Users/NDTW36/Documents/GitHub/moto_dji-respository/New_DJI/dJISDKLIB/src/main/res/anim/core_zoom_exit_back.xml --><!-- From: file:/C:/Users/NDTW36/Documents/GitHub/moto_dji-respository/New_DJI/dJISDKLIB/build/intermediates/bundles/debug/res/anim/core_zoom_exit_back.xml -->
