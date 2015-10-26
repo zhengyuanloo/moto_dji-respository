@@ -79,6 +79,11 @@
             android:label="@string/title_activity_texture_camera"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity
+            android:name=".SurfaceViewCameraActivity"
+            android:label="@string/title_activity_surface_view_camera"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>

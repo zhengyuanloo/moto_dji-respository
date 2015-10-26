@@ -1,17 +1,14 @@
 package com.example.ndtw36.new_dji;
 
-import android.graphics.SurfaceTexture;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Surface;
+import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.TextureView;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import dji.sdk.api.Camera.DJICameraDecodeTypeDef;
@@ -20,10 +17,9 @@ import dji.sdk.api.mediacodec.DJIVideoDecoder;
 import dji.sdk.interfaces.DJIReceivedVideoDataCallBack;
 import dji.sdk.widget.DjiGLSurfaceView;
 
-public class TextureCameraActivity extends AppCompatActivity implements TextureView.SurfaceTextureListener {
+public class SurfaceViewCameraActivity extends AppCompatActivity implements SurfaceHolder.Callback {
 
-    private static final String TAG = "TextureCameraActivity";
-    private int DroneCode;
+    private static final String TAG = "SurfaceViewCameraActivity";
     private final int SHOWDIALOG = 1;
     private final int SHOWTOAST = 2;
     private final static int MSG_INIT_DECODER = 3;
@@ -31,8 +27,8 @@ public class TextureCameraActivity extends AppCompatActivity implements TextureV
     private int TIME = 1000;
     private DJIReceivedVideoDataCallBack mReceivedVideoDataCallBack = null;
 
+    SurfaceView surfaceView;
     private DJIVideoDecoder mVideoDecoder = null;
-    private TextureView mVideoSurface;
 
     private Handler handler = new Handler(new Handler.Callback() {
 
@@ -44,10 +40,10 @@ public class TextureCameraActivity extends AppCompatActivity implements TextureV
                     initDecoder(mSurface);
                     break;
                 case SHOWDIALOG:
-                    Toast.makeText(TextureCameraActivity.this, (String) msg.obj, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SurfaceViewCameraActivity.this, (String) msg.obj, Toast.LENGTH_SHORT).show();
                     break;
                 case SHOWTOAST:
-                    Toast.makeText(TextureCameraActivity.this, (String) msg.obj, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SurfaceViewCameraActivity.this, (String) msg.obj, Toast.LENGTH_SHORT).show();
                     break;
                 default:
                     break;
@@ -72,13 +68,29 @@ public class TextureCameraActivity extends AppCompatActivity implements TextureV
             }
         }
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_texture_camera);
+        setContentView(R.layout.activity_surface_view_camera);
 
-        mVideoSurface = (TextureView)findViewById(R.id.texture_surface);
-        mVideoSurface.setSurfaceTextureListener(this);
+        surfaceView=(SurfaceView)findViewById(R.id.surfaceView);
+        surfaceView.getHolder().addCallback(this);
+    }
+
+    @Override
+    public void surfaceCreated(SurfaceHolder holder) {
+        if (mVideoDecoder == null) {
+            Surface mSurface  = holder.getSurface();
+            handler.sendMessageDelayed(Message.obtain(handler, MSG_INIT_DECODER, mSurface), 200);
+        } else {
+            mVideoDecoder.setSurface(holder.getSurface());
+        }
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
     }
 
     private void initDecoder(Surface surface) {
@@ -99,31 +111,11 @@ public class TextureCameraActivity extends AppCompatActivity implements TextureV
     }
 
     @Override
-    public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
-        if (mVideoDecoder == null) {
-            Surface mSurface  = new Surface(surface);
-            handler.sendMessageDelayed(Message.obtain(handler, MSG_INIT_DECODER, mSurface), 200);
-        } else {
-            mVideoDecoder.setSurface(new Surface(surface));
-        }
-    }
-
-    @Override
-    public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
-
-    }
-
-    @Override
-    public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
+    public void surfaceDestroyed(SurfaceHolder holder) {
         if (mVideoDecoder != null)
             mVideoDecoder.setSurface(null);
-        return false;
     }
 
-    @Override
-    public void onSurfaceTextureUpdated(SurfaceTexture surface) {
-
-    }
     @Override
     protected void onStop()
     {

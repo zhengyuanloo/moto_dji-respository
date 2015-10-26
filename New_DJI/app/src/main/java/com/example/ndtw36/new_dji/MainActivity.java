@@ -149,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
            new DemoInfo("Camera DJI","Capture Photo Activity", CameraActivity.class),
             new DemoInfo("Ground Station DJI","Ground Station Maps Activity", GroundStationMapsActivity.class),
             new DemoInfo("Texture Camera DJI","Texture Camera Activity", TextureCameraActivity.class),
+            new DemoInfo("SurfaceView Camera DJI","SurfaceView Camera Activity", SurfaceViewCameraActivity.class),
     };
 
     private  class DemoListAdapter extends BaseAdapter {
