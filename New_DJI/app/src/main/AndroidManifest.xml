@@ -74,6 +74,11 @@
             android:name=".GroundStationMapsActivity"
             android:label="@string/title_activity_ground_station_maps" >
         </activity>
+        <activity
+            android:name=".TextureCameraActivity"
+            android:label="@string/title_activity_texture_camera"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>

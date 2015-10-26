@@ -148,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
     private static final DemoInfo[] demos = {
            new DemoInfo("Camera DJI","Capture Photo Activity", CameraActivity.class),
             new DemoInfo("Ground Station DJI","Ground Station Maps Activity", GroundStationMapsActivity.class),
+            new DemoInfo("Texture Camera DJI","Texture Camera Activity", TextureCameraActivity.class),
     };
 
     private  class DemoListAdapter extends BaseAdapter {
