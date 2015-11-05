@@ -151,6 +151,8 @@ public class MainActivity extends AppCompatActivity {
             new DemoInfo("Texture Camera DJI","Texture Camera Activity", TextureCameraActivity.class),
             new DemoInfo("SurfaceView Camera DJI","SurfaceView Camera Activity", SurfaceViewCameraActivity.class),
             new DemoInfo("Download Media Data DJI","Download Media Data Activity", DownloadMediaActivity.class),
+            new DemoInfo("ScreenShot DJI","ScreenShot Activity", ScreenShotActivity.class),
+            new DemoInfo("Face Detect DJI","FaceDetect Activity", FaceDetectActivity.class),
     };
 
     private  class DemoListAdapter extends BaseAdapter {
