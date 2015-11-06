@@ -1,6 +1,8 @@
 package com.example.ndtw36.new_dji;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,12 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 import dji.sdk.api.Camera.DJICameraDecodeTypeDef;
 import dji.sdk.api.DJIDrone;
@@ -76,6 +84,34 @@ public class SurfaceViewCameraActivity extends AppCompatActivity implements Surf
 
         surfaceView=(SurfaceView)findViewById(R.id.surfaceView);
         surfaceView.getHolder().addCallback(this);
+
+        final String mPath = Environment.getExternalStorageDirectory().toString() + "/surfaceViewDjiImage.jpeg";
+
+
+        surfaceView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                surfaceView.setDrawingCacheEnabled(true);
+                Bitmap bitmap= Bitmap.createBitmap(surfaceView.getDrawingCache());
+
+                OutputStream fout = null;
+                File imageFile = new File(mPath);
+
+                try {
+                    fout = new FileOutputStream(imageFile);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fout);
+                    fout.flush();
+                    fout.close();
+
+                } catch (FileNotFoundException e) {
+                    // TODO Auto-generated catch block
+                    Toast.makeText(SurfaceViewCameraActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    Toast.makeText(SurfaceViewCameraActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
