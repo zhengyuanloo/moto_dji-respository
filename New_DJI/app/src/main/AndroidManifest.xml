@@ -86,11 +86,15 @@
         </activity>
         <activity android:name=".DownloadMediaActivity" >
         </activity>
-        <activity android:name=".ScreenShotActivity"
-            android:screenOrientation="landscape">
+        <activity
+            android:name=".ScreenShotActivity"
+            android:screenOrientation="landscape" >
         </activity>
-        <activity android:name=".FaceDetectActivity"
-            android:screenOrientation="landscape">
+        <activity
+            android:name=".FaceDetectActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity android:name=".DistanceMeasureActivity" >
         </activity>
     </application>
 

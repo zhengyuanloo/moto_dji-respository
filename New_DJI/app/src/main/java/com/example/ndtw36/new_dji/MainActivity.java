@@ -153,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
             new DemoInfo("Download Media Data DJI","Download Media Data Activity", DownloadMediaActivity.class),
             new DemoInfo("ScreenShot DJI","ScreenShot Activity", ScreenShotActivity.class),
             new DemoInfo("Face Detect DJI","FaceDetect Activity", FaceDetectActivity.class),
+            new DemoInfo("Distance Measure DJI","Distance Measure Activity",DistanceMeasureActivity.class),
     };
 
     private  class DemoListAdapter extends BaseAdapter {
