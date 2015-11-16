@@ -96,6 +96,8 @@
         </activity>
         <activity android:name=".DistanceMeasureActivity" >
         </activity>
+        <activity android:name=".AutoFlyControllActivity" >
+        </activity>
     </application>
 
 </manifest>

@@ -13,21 +13,25 @@ import dji.sdk.api.Camera.DJICameraSettingsTypeDef;
 import dji.sdk.api.DJIDrone;
 import dji.sdk.api.Gimbal.DJIGimbalAttitude;
 import dji.sdk.api.Gimbal.DJIGimbalRotation;
+import dji.sdk.api.GroundStation.DJIGroundStationTypeDef;
 import dji.sdk.api.MainController.DJIMainControllerSystemState;
 import dji.sdk.api.MainController.DJIMainControllerTypeDef;
 import dji.sdk.interfaces.DJIGimbalErrorCallBack;
 import dji.sdk.interfaces.DJIGimbalUpdateAttitudeCallBack;
+import dji.sdk.interfaces.DJIGroundStationExecuteCallBack;
 import dji.sdk.interfaces.DJIMcuErrorCallBack;
 import dji.sdk.interfaces.DJIMcuUpdateStateCallBack;
 import dji.sdk.interfaces.DJIReceivedVideoDataCallBack;
 import dji.sdk.widget.DjiGLSurfaceView;
+
+import static java.lang.Math.pow;
 
 public class DistanceMeasureActivity extends AppCompatActivity {
 
     private static final String TAG = "DistanceMeaureActivity";
     private int DroneCode;
     private TextView distance;
-    private Button pitchUp,pitchDown,pitchGo,lockDistance;
+    private Button pitchUp,pitchDown,pitchGo,lockDistance,btnTakeOFF,btnLanding;
     private boolean isLock=false;
     private EditText etPitch;
     double altitude;
@@ -105,24 +109,81 @@ public class DistanceMeasureActivity extends AppCompatActivity {
         pitchGo=(Button)findViewById(R.id.btn_go);
         etPitch=(EditText)findViewById(R.id.etPitch);
         lockDistance=(Button)findViewById(R.id.lock_btn);
+        btnTakeOFF=(Button)findViewById(R.id.btnTakeOFF);
+        btnLanding=(Button)findViewById(R.id.btnLanding);
 
         pitchUp.setOnTouchListener(Pluslisten);
         pitchDown.setOnTouchListener(minuslisten);
 
         setPitchAngle();
         setDistanceLocker();
+        takeOffDrone();
+        landDrone();
     }
 
+    private void landDrone() {
+        btnLanding.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                while(altitude>0) {
+                    DJIDrone.getDjiGroundStation().setAircraftJoystick(0, 0, 0, 2, new DJIGroundStationExecuteCallBack() {
+
+                        @Override
+                        public void onResult(DJIGroundStationTypeDef.GroundStationResult result) {
+                            // TODO Auto-generated method stub
+
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    private void takeOffDrone() {
+        btnTakeOFF.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DJIDrone.getDjiGroundStation().openGroundStation(new DJIGroundStationExecuteCallBack() {
+
+                    @Override
+                    public void onResult(DJIGroundStationTypeDef.GroundStationResult result) {
+                        // TODO Auto-generated method stub
+                        String ResultsString = "opens result =" + result.toString();
+
+                        DJIDrone.getDjiGroundStation().oneKeyFly(new DJIGroundStationExecuteCallBack() {
+                            @Override
+                            public void onResult(DJIGroundStationTypeDef.GroundStationResult result) {
+                                // TODO Auto-generated method stub
+
+                                String ResultsString = "one key fly result =" + result.toString();
+
+                                if (result == DJIGroundStationTypeDef.GroundStationResult.GS_Result_Success) {
+                                    //
+                                }
+                            }
+
+                        });
+
+                    }
+                });
+            }
+        });
+    }
+
+    double opLen=0;
     private void measureXYZDistance() {
         DJIDrone.getDjiMC().setMcuUpdateStateCallBack(new DJIMcuUpdateStateCallBack() {
             @Override
             public void onResult(DJIMainControllerSystemState djiMainControllerSystemState) {
                 altitude = djiMainControllerSystemState.altitude;
-                altitude=0.66;
+                //altitude=0.66;
+                angleZ=djiMainControllerSystemState.yaw;
                 angleY=90+pitch;
+                opLen=altitude*Math.tan(Math.toRadians(angleY));
 
                 if(!isLock){
                     len=altitude*Math.tan(Math.toRadians(angleY));
+                    angleX=djiMainControllerSystemState.yaw;
                 }else{
                     if(pitch>0)
                     {
@@ -135,14 +196,18 @@ public class DistanceMeasureActivity extends AppCompatActivity {
                         height=len*Math.tan(Math.toRadians(-pitch));
                         height=0.66-height;
                     }
+
+                    width=getWidth(len,angleZ,angleX,opLen);
                 }
 
                 DistanceMeasureActivity.this.runOnUiThread(new Runnable() {
 
                     @Override
                     public void run() {
-                        distance.setText("Altitude: " + altitude + " Pitch: " + angleY+ " Length: "+len
-                        +" Height: "+height);
+                        distance.setText("Altitude: " + altitude + " Pitch: " +String.format("%.2f", angleY)+ " Yaw: "+String.format("%.2f", angleZ)
+                                + " \nLength: "+String.format("%.2f", len)
+                        +" Height: "+String.format("%.2f", height)
+                        +" Width: "+String.format("%.2f", width));
                     }
                 });
             }
@@ -153,6 +218,20 @@ public class DistanceMeasureActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    double ww;
+    double aplha;
+    private double getWidth(double len, double angleZ, double angleX, double opLen) {
+
+        aplha=angleZ-angleX;
+
+        if(aplha<0)
+        {aplha=-aplha;}
+
+        ww= pow(len, 2)+ pow(opLen, 2)-(2*len*opLen*Math.cos(Math.toRadians(aplha)));
+
+        return Math.sqrt(ww);
     }
 
     private void setDistanceLocker() {
