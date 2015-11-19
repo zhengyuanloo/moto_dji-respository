@@ -155,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
             new DemoInfo("Face Detect DJI","FaceDetect Activity", FaceDetectActivity.class),
             new DemoInfo("Distance Measure DJI","Distance Measure Activity",DistanceMeasureActivity.class),
             new DemoInfo("Auto Fly DJI","Auto Fly Activity",AutoFlyControllActivity.class),
+            new DemoInfo("Face Activity","Face Activity",FaceActivity.class),
     };
 
     private  class DemoListAdapter extends BaseAdapter {

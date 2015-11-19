@@ -41,9 +41,9 @@ public class AutoFlyControllActivity extends AppCompatActivity {
     private final int SHOWDIALOG = 1;
     private final int SHOWTOAST = 2;
     private final int STOP_RECORDING = 10;
-    private Button takeOff,start,stop,land;
+    private Button takeOff,start,stop,land,btnDegree;
     private TextView viewTimer,state;
-    private EditText etYaw,etFowBack,etLeftRight;
+    private EditText etYaw,etFowBack,etLeftRight,etDegree;
     private int i = 0;
     private int TIME = 1000;
     private DjiGLSurfaceView mDjiGLSurfaceView;
@@ -133,6 +133,8 @@ public class AutoFlyControllActivity extends AppCompatActivity {
         land=(Button)findViewById(R.id.btn_land);
         viewTimer=(TextView)findViewById(R.id.viewTimer);
         state=(TextView)findViewById(R.id.tvState);
+        btnDegree=(Button)findViewById(R.id.btnDegree);
+        etDegree=(EditText)findViewById(R.id.etDegree);
 
        etYaw=(EditText)findViewById(R.id.etYaw);
         etFowBack=(EditText)findViewById(R.id.etFowBack);
@@ -142,10 +144,31 @@ public class AutoFlyControllActivity extends AppCompatActivity {
         startFlightMode();
         stopFlightMode();
         landDrone();
+        degreeControl();
 
     }
 
-   double latitude;
+    double curYaw;
+    private void degreeControl() {
+        final int[] yawDegreeSet = new int[1];
+
+        btnDegree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                yawDegreeSet[0] =Integer.parseInt(etDegree.getText().toString());
+
+                if(yawDegreeSet[0] >curYaw){
+                    while(curYaw<yawDegreeSet[0]){
+                        setAircraftFlightMode(30, 0, 0, 0);}
+                }else{
+                    while(curYaw>yawDegreeSet[0]){
+                        setAircraftFlightMode(-30, 0, 0, 0);}
+                }
+            }
+        });
+    }
+
+    double latitude;
     double longitude;
     float altitude;
     String bufferStr;
@@ -164,6 +187,7 @@ public class AutoFlyControllActivity extends AppCompatActivity {
                 latitude=djiMainControllerSystemState.droneLocationLatitude;
                 longitude=djiMainControllerSystemState.droneLocationLongitude;
                 altitude= (float) djiMainControllerSystemState.altitude;
+                curYaw=djiMainControllerSystemState.yaw;
 
                 sb.append("velocityX=").append(djiMainControllerSystemState.velocityX).append("\n");
                 sb.append("velocityY=").append(djiMainControllerSystemState.velocityY).append("\n");

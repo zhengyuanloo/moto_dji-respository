@@ -99,4 +99,23 @@
         android:layout_below="@+id/takeOFF"
         android:layout_alignParentEnd="true" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        android:ems="10"
+        android:id="@+id/etDegree"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/etLeftRight"
+        android:hint="-180 ~ 180"
+        android:layout_alignEnd="@+id/viewTimer" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GO"
+        android:id="@+id/btnDegree"
+        android:layout_alignBottom="@+id/etDegree"
+        android:layout_toEndOf="@+id/etDegree" />
+
 </RelativeLayout>

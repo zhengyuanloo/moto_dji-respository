@@ -16,8 +16,13 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <uses-feature android:name="android.hardware.camera" android:required="false"/>
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
+    <uses-feature android:name="android.hardware.camera.front" android:required="false"/>
+    <uses-feature android:name="android.hardware.camera.front.autofocus" android:required="false"/>
+
     <uses-feature
         android:name="android.hardware.usb.accessory"
         android:required="false" />
@@ -97,6 +102,8 @@
         <activity android:name=".DistanceMeasureActivity" >
         </activity>
         <activity android:name=".AutoFlyControllActivity" >
+        </activity>
+        <activity android:name=".FaceActivity" >
         </activity>
     </application>
 
