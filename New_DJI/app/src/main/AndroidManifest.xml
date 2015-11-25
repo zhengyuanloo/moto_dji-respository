@@ -15,14 +15,20 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
-    <uses-permission android:name="android.permission.CAMERA"/>
-
-    <uses-feature android:name="android.hardware.camera" android:required="false"/>
-    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
-    <uses-feature android:name="android.hardware.camera.front" android:required="false"/>
-    <uses-feature android:name="android.hardware.camera.front.autofocus" android:required="false"/>
-
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front.autofocus"
+        android:required="false" />
     <uses-feature
         android:name="android.hardware.usb.accessory"
         android:required="false" />
@@ -34,7 +40,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/phantom3"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <uses-library android:name="com.android.future.usb.accessory" />
@@ -61,11 +67,14 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main"
+            android:screenOrientation="landscape"
+            >
         </activity>
         <activity
             android:name=".CameraActivity"
-            android:label="@string/title_activity_camera" >
+            android:label="@string/title_activity_camera"
+            android:screenOrientation="landscape">
         </activity>
 
         <meta-data
@@ -77,19 +86,23 @@
 
         <activity
             android:name=".GroundStationMapsActivity"
-            android:label="@string/title_activity_ground_station_maps" >
+            android:label="@string/title_activity_ground_station_maps"
+            android:screenOrientation="landscape">
         </activity>
         <activity
             android:name=".TextureCameraActivity"
             android:label="@string/title_activity_texture_camera"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="landscape">
         </activity>
         <activity
             android:name=".SurfaceViewCameraActivity"
             android:label="@string/title_activity_surface_view_camera"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".DownloadMediaActivity" >
+        <activity android:name=".DownloadMediaActivity"
+            android:screenOrientation="landscape">
         </activity>
         <activity
             android:name=".ScreenShotActivity"
@@ -99,11 +112,22 @@
             android:name=".FaceDetectActivity"
             android:screenOrientation="landscape" >
         </activity>
-        <activity android:name=".DistanceMeasureActivity" >
+        <activity android:name=".DistanceMeasureActivity"
+            android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".AutoFlyControllActivity" >
+        <activity android:name=".AutoFlyControllActivity"
+            android:screenOrientation="landscape">
         </activity>
         <activity android:name=".FaceActivity" >
+        </activity>
+        <activity android:name=".ObjDetectImgProcActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ObjectDetectionCamPreviewActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".EdgeDetectionActivity"
+            android:screenOrientation="landscape">
         </activity>
     </application>
 

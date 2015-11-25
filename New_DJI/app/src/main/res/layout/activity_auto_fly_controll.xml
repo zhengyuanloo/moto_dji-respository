@@ -107,15 +107,15 @@
         android:id="@+id/etDegree"
         android:layout_centerVertical="true"
         android:layout_alignStart="@+id/etLeftRight"
-        android:hint="-180 ~ 180"
-        android:layout_alignEnd="@+id/viewTimer" />
+        android:hint="+/- 180 (Yaw Degree)"
+        android:layout_toStartOf="@+id/btnDegree" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="GO"
         android:id="@+id/btnDegree"
-        android:layout_alignBottom="@+id/etDegree"
-        android:layout_toEndOf="@+id/etDegree" />
+        android:layout_centerVertical="true"
+        android:layout_alignEnd="@+id/etLeftRight" />
 
 </RelativeLayout>

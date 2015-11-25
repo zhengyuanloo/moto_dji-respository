@@ -33,7 +33,6 @@
             android:id="@+id/button3"
             android:layout_width="157dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:text="Stop recording"
             android:textSize="12sp"/>
         <TextView

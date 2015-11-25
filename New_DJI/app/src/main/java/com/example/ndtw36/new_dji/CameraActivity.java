@@ -97,7 +97,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             public void onResult(byte[] videoBuffer, int size)
             {
                 // TODO Auto-generated method stub
-                passVideoDJI(videoBuffer,size);
                 mDjiGLSurfaceView.setDataToDecoder(videoBuffer, size);
             }
 
@@ -127,24 +126,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         captureAction.setOnClickListener(this);
         recordAction.setOnClickListener(this);
         captureMode.setOnClickListener(this);
-    }
-
-    private void passVideoDJI(byte[] videoBuffer, int size) {
-
-        handler.sendMessage(handler.obtainMessage(SHOWTOAST,videoBuffer.toString()+" "+size));
-        InputStream in = new ByteArrayInputStream(videoBuffer);
-        // bmp = BitmapFactory.decodeStream(in);
-
-        /* try {
-            outputStream = new FileOutputStream(new File("/sdcard/DJI/dji.264"));
-
-            outputStream.write(videoBuffer);
-
-        } catch (FileNotFoundException e) {
-        e.printStackTrace();
-        } catch (IOException e) {
-        e.printStackTrace();
-        }*/
     }
 
     /**
@@ -302,7 +283,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         mDjiGLSurfaceView.destroy();
         super.onDestroy();
         // The following codes are used to kill the application process.
-        android.os.Process.killProcess(Process.myPid());
+      //  android.os.Process.killProcess(Process.myPid());
     }
     // The following codes are used to exit FPVActivity when pressing the phone's "return" button twice.
     private static boolean first = false;

@@ -17,6 +17,8 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.ndtw36.new_dji.EdgeDetect.bitmap_manip.niblack.EdgeDetection;
+
 import dji.sdk.api.DJIDrone;
 import dji.sdk.api.DJIDroneTypeDef;
 import dji.sdk.api.DJIError;
@@ -156,6 +158,8 @@ public class MainActivity extends AppCompatActivity {
             new DemoInfo("Distance Measure DJI","Distance Measure Activity",DistanceMeasureActivity.class),
             new DemoInfo("Auto Fly DJI","Auto Fly Activity",AutoFlyControllActivity.class),
             new DemoInfo("Face Activity","Face Activity",FaceActivity.class),
+            new DemoInfo("Object Detection Activity","Object Detection Activity",ObjectDetectionCamPreviewActivity.class),
+            new DemoInfo("Edge Detection Activity","Edge Detection Activity",EdgeDetectionActivity.class),
     };
 
     private  class DemoListAdapter extends BaseAdapter {
