@@ -68,13 +68,12 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:screenOrientation="landscape"
-            >
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".CameraActivity"
             android:label="@string/title_activity_camera"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
         </activity>
 
         <meta-data
@@ -87,22 +86,23 @@
         <activity
             android:name=".GroundStationMapsActivity"
             android:label="@string/title_activity_ground_station_maps"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".TextureCameraActivity"
             android:label="@string/title_activity_texture_camera"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
             android:name=".SurfaceViewCameraActivity"
             android:label="@string/title_activity_surface_view_camera"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
-        <activity android:name=".DownloadMediaActivity"
-            android:screenOrientation="landscape">
+        <activity
+            android:name=".DownloadMediaActivity"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".ScreenShotActivity"
@@ -112,22 +112,37 @@
             android:name=".FaceDetectActivity"
             android:screenOrientation="landscape" >
         </activity>
-        <activity android:name=".DistanceMeasureActivity"
-            android:screenOrientation="landscape">
+        <activity
+            android:name=".DistanceMeasureActivity"
+            android:screenOrientation="landscape" >
         </activity>
-        <activity android:name=".AutoFlyControllActivity"
-            android:screenOrientation="landscape">
+        <activity
+            android:name=".AutoFlyControllActivity"
+            android:screenOrientation="landscape" >
         </activity>
         <activity android:name=".FaceActivity" >
         </activity>
-        <activity android:name=".ObjDetectImgProcActivity"
-            android:screenOrientation="landscape">
+        <activity
+            android:name=".ObjDetectImgProcActivity"
+            android:screenOrientation="landscape" >
         </activity>
-        <activity android:name=".ObjectDetectionCamPreviewActivity"
-            android:screenOrientation="landscape">
+        <activity
+            android:name=".ObjectDetectionCamPreviewActivity"
+            android:screenOrientation="landscape" >
         </activity>
-        <activity android:name=".EdgeDetectionActivity"
-            android:screenOrientation="landscape">
+        <activity
+            android:name=".EdgeDetectionActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity android:name=".CornerDetectionActivity" >
+        </activity>
+        <activity android:name=".ObjectTrackerActivity" >
+        </activity>
+        <activity android:name=".ShapeDetectActivity" >
+        </activity>
+        <activity android:name=".ObjectTrackingActivity" >
+        </activity>
+        <activity android:name=".EdgeDetectActivity" >
         </activity>
     </application>
 

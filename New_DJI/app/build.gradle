@@ -32,4 +32,6 @@ dependencies {
     compile 'com.google.android.gms:play-services-maps:8.1.0'
     compile 'com.google.android.gms:play-services-vision:8.1.0'
     compile 'com.android.support:design:23.1.0'
+    compile files('src/main/jniLibs/jxl.jar')
+    compile files('src/main/jniLibs/jxl.jar')
 }

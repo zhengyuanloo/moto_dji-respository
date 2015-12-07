@@ -155,11 +155,16 @@ public class MainActivity extends AppCompatActivity {
             new DemoInfo("Download Media Data DJI","Download Media Data Activity", DownloadMediaActivity.class),
             new DemoInfo("ScreenShot DJI","ScreenShot Activity", ScreenShotActivity.class),
             new DemoInfo("Face Detect DJI","FaceDetect Activity", FaceDetectActivity.class),
-            new DemoInfo("Distance Measure DJI","Distance Measure Activity",DistanceMeasureActivity.class),
+          //  new DemoInfo("Distance Measure DJI","Distance Measure Activity",DistanceMeasureActivity.class),
             new DemoInfo("Auto Fly DJI","Auto Fly Activity",AutoFlyControllActivity.class),
             new DemoInfo("Face Activity","Face Activity",FaceActivity.class),
-            new DemoInfo("Object Detection Activity","Object Detection Activity",ObjectDetectionCamPreviewActivity.class),
-            new DemoInfo("Edge Detection Activity","Edge Detection Activity",EdgeDetectionActivity.class),
+          //  new DemoInfo("Object Detection Activity","Object Detection Activity",ObjectDetectionCamPreviewActivity.class),
+            //new DemoInfo("Edge Detection Activity","Edge Detection Activity",EdgeDetectionActivity.class),
+            new DemoInfo("Corner Detection Activity","Corner Detection Activity",CornerDetectionActivity.class),
+            new DemoInfo("Object Tracker Activity","Object Tracker Activity",ObjectTrackerActivity.class),
+            new DemoInfo("Shape Detect Activity","Shape Detect Activity",ShapeDetectActivity.class),
+            new DemoInfo("Distance Detect Activity","Distance Detect Activity",ObjectTrackingActivity.class),
+            new DemoInfo("Edge Detect Activity","Edge Detect Activity",EdgeDetectActivity.class),
     };
 
     private  class DemoListAdapter extends BaseAdapter {
