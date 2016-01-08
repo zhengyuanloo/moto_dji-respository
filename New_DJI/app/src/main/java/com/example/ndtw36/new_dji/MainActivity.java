@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final int SHOWDIALOG = 2;
 
+    //display message
     private Handler handler = new Handler(new Handler.Callback() {
 
         @Override
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         onInitSDK(type);
 
+        //check permission of drone API key
         new Thread(){
             public void run() {
                 try {
@@ -111,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
+    //initial type pf drone
     private void onInitSDK(int type){
         switch(type){
             case 0 : {
@@ -137,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
         DJIDrone.connectToDrone();
     }
 
+    //Disconnect the drone
     private void onUnInitSDK(){
         DJIDrone.disconnectToDrone();
     }
@@ -147,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
         this.startActivity(intent);
     }
 
+    //List of message and class activity
     private static final DemoInfo[] demos = {
            new DemoInfo("Camera DJI","Capture Photo Activity", CameraActivity.class),
             new DemoInfo("Ground Station DJI","Ground Station Maps Activity", GroundStationMapsActivity.class),
@@ -165,8 +170,10 @@ public class MainActivity extends AppCompatActivity {
             new DemoInfo("Shape Detect Activity","Shape Detect Activity",ShapeDetectActivity.class),
             new DemoInfo("Distance Detect Activity","Distance Detect Activity",ObjectTrackingActivity.class),
             new DemoInfo("Edge Detect Activity","Edge Detect Activity",EdgeDetectActivity.class),
+            new DemoInfo("Line Detect Activity","Line Detect Activity",LineDetectActivity.class),
     };
 
+    //ListView adaptor for MainActivity
     private  class DemoListAdapter extends BaseAdapter {
         public DemoListAdapter() {
             super();
@@ -209,17 +216,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * @Description : RETURN BTN RESPONSE FUNCTION
-     * @author      : andy.zhao
-     * @param view
-     * @return      : void
-     */
+
     public void onReturn(View view){
         Log.d(TAG ,"onReturn");
         this.finish();
     }
 
+    //display message as Alert Dialog
     public void showMessage(String title, String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title)

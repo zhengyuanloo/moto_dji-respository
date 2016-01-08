@@ -51,6 +51,7 @@ public class AutoFlyControllActivity extends AppCompatActivity {
 
     private String flightState;
 
+    //Display message
     private Handler handler = new Handler(new Handler.Callback() {
 
         @Override
@@ -69,24 +70,6 @@ public class AutoFlyControllActivity extends AppCompatActivity {
         }
     });
 
-
-    private Handler handlerTimer = new Handler();
-    Runnable runnable = new Runnable(){
-        @Override
-        public void run() {
-            // handler自带方法实现定时器
-            try {
-
-                handlerTimer.postDelayed(this, TIME);
-                viewTimer.setText(Integer.toString(i++));
-
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,12 +77,15 @@ public class AutoFlyControllActivity extends AppCompatActivity {
 
         DroneCode = 1;
 
+        //select decoded type (hardware or software)
         DJIDrone.getDjiCamera().setDecodeType(DJICameraDecodeTypeDef.DecoderType.Software);
 
+        //initial the djiSurfaceView view in order to display real time image from drone camera
         mDjiGLSurfaceView = (DjiGLSurfaceView)findViewById(R.id.AutoFly_surfaceDJI);
 
         mDjiGLSurfaceView.start();
 
+        //Call video buffer data from drone
         mReceivedVideoDataCallBack = new DJIReceivedVideoDataCallBack(){
 
             @Override
@@ -112,6 +98,7 @@ public class AutoFlyControllActivity extends AppCompatActivity {
 
         };
 
+        //Get drone camera state
         DJIDrone.getDjiCamera().setDjiCameraSystemStateCallBack(new DJICameraSystemStateCallBack() {
 
             @Override
@@ -148,7 +135,9 @@ public class AutoFlyControllActivity extends AppCompatActivity {
 
     }
 
+
     double curYaw;
+    //set drone yaw degree
     private void degreeControl() {
         final int[] yawDegreeSet = new int[1];
 
@@ -177,6 +166,7 @@ public class AutoFlyControllActivity extends AppCompatActivity {
     double maxVelocityZ=0;
     String maxVelocity;
 
+    //Display drone state such location, speed, height and so on
     public void displayMainControll() {
 
         DJIDrone.getDjiMC().setMcuUpdateStateCallBack(new DJIMcuUpdateStateCallBack() {
@@ -231,6 +221,7 @@ public class AutoFlyControllActivity extends AppCompatActivity {
         });
     }
 
+    //Order drone to landing
     private void landDrone() {
        land.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -244,6 +235,7 @@ public class AutoFlyControllActivity extends AppCompatActivity {
     }
 
 
+    //setting flight speed and drone rotation
     int yaw=0,roll=0,pitch=0,throttle=0;
     private void startFlightMode() {
 
@@ -259,6 +251,7 @@ public class AutoFlyControllActivity extends AppCompatActivity {
         });
     }
 
+    //function for stopping the flying drone
     private void stopFlightMode() {
 
         stop.setOnClickListener(new View.OnClickListener() {
@@ -272,13 +265,13 @@ public class AutoFlyControllActivity extends AppCompatActivity {
         });
     }
 
+    //setting flight speed and drone rotation
     public void setAircraftFlightMode(final int yaw, final int pitch, final int roll, final int throttle){
 
         DJIDrone.getDjiGroundStation().setAircraftJoystick(yaw, pitch, roll, throttle, new DJIGroundStationExecuteCallBack() {
 
             @Override
             public void onResult(DJIGroundStationTypeDef.GroundStationResult result) {
-                // TODO Auto-generated method stub
 
                 AutoFlyControllActivity.this.runOnUiThread(new Runnable() {
                     @Override
@@ -291,6 +284,7 @@ public class AutoFlyControllActivity extends AppCompatActivity {
         });
     }
 
+    //function for taking off
     private void takeOFFDrone() {
         takeOff.setOnClickListener(new View.OnClickListener() {
             @Override

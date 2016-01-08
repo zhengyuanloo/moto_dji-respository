@@ -144,6 +144,8 @@
         </activity>
         <activity android:name=".EdgeDetectActivity" >
         </activity>
+        <activity android:name=".LineDetectActivity" >
+        </activity>
     </application>
 
 </manifest>

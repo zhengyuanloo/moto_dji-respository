@@ -15,6 +15,9 @@ import java.util.List;
 import dji.sdk.api.media.DJIMedia;
 import dji.sdk.api.media.DJIMediaInfo;
 
+
+//This class is associated with DownloadMediaActivty
+//keep the media files in this adapter and display on the list view
 public class FileListAdapter extends BaseAdapter {
 
     Context CTX;

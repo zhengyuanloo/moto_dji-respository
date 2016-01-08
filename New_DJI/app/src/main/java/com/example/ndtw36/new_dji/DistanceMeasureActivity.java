@@ -55,12 +55,15 @@ public class DistanceMeasureActivity extends AppCompatActivity {
 
         DroneCode = 1;
 
+        //select decoded type (hardware or software)
         DJIDrone.getDjiCamera().setDecodeType(DJICameraDecodeTypeDef.DecoderType.Software);
 
+        //initial the djiSurfaceView view in order to display real time image from drone camera
         mDjiGLSurfaceView = (DjiGLSurfaceView)findViewById(R.id.DjiMeaureView);
 
         mDjiGLSurfaceView.start();
 
+        //Call video buffer data from drone
         mReceivedVideoDataCallBack = new DJIReceivedVideoDataCallBack(){
 
             @Override
@@ -75,6 +78,7 @@ public class DistanceMeasureActivity extends AppCompatActivity {
 
         DJIDrone.getDjiCamera().setReceivedVideoDataCallBack(mReceivedVideoDataCallBack);
 
+        //Get Gimbal camera state
         mGimbalErrorCallBack = new DJIGimbalErrorCallBack(){
 
             @Override
@@ -85,6 +89,7 @@ public class DistanceMeasureActivity extends AppCompatActivity {
 
         };
 
+        //Get Gimbal camera attitude
         mGimbalUpdateAttitudeCallBack = new DJIGimbalUpdateAttitudeCallBack(){
 
             @Override
@@ -121,6 +126,7 @@ public class DistanceMeasureActivity extends AppCompatActivity {
         landDrone();
     }
 
+    //function to landing
     private void landDrone() {
         btnLanding.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,6 +145,7 @@ public class DistanceMeasureActivity extends AppCompatActivity {
         });
     }
 
+    //function for taking off
     private void takeOffDrone() {
         btnTakeOFF.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,6 +178,7 @@ public class DistanceMeasureActivity extends AppCompatActivity {
     }
 
     double opLen=0;
+    //manually detect distance from object to drone camera
     private void measureXYZDistance() {
         DJIDrone.getDjiMC().setMcuUpdateStateCallBack(new DJIMcuUpdateStateCallBack() {
             @Override
@@ -200,6 +208,7 @@ public class DistanceMeasureActivity extends AppCompatActivity {
                     width=getWidth(len,angleZ,angleX,opLen);
                 }
 
+                //display the value distance
                 DistanceMeasureActivity.this.runOnUiThread(new Runnable() {
 
                     @Override
@@ -234,6 +243,7 @@ public class DistanceMeasureActivity extends AppCompatActivity {
         return Math.sqrt(ww);
     }
 
+    //set distance fix
     private void setDistanceLocker() {
         lockDistance.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -249,6 +259,7 @@ public class DistanceMeasureActivity extends AppCompatActivity {
         }
     }
 
+    //set angle of pitch
     private void setPitchAngle() {
         pitchGo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -289,6 +300,7 @@ public class DistanceMeasureActivity extends AppCompatActivity {
 
     private boolean mIsPitchUp = false;
     private boolean mIsPitchDown = false;
+
     class Plus_Listener implements View.OnClickListener, View.OnTouchListener {
         @Override
         public void onClick(View view) {

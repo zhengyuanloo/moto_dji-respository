@@ -153,6 +153,7 @@ public class DownloadMediaActivity extends AppCompatActivity {
         return availableSpareBlocks*blockSize;
     }
 
+    //get all media file and put into listview
     private void getFileList(){
         new Thread(){
             public void run() {
@@ -233,6 +234,7 @@ public class DownloadMediaActivity extends AppCompatActivity {
         }.start();
     }
 
+    //download media file
     private void syncOneFileByIndex(final int index){
         if (!isNotPhantom2) {
             String state = Environment.getExternalStorageDirectory().getPath();

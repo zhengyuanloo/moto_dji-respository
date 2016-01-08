@@ -37,6 +37,7 @@ public class ColorBlobDetector {
         mColorRadius = radius;
     }
 
+    //set value of HUE, Saturation and VALUE
     public void setHsvColor(Scalar hsvColor) {
         double minH = (hsvColor.val[0] >= mColorRadius.val[0]) ? hsvColor.val[0]-mColorRadius.val[0] : 0;
         double maxH = (hsvColor.val[0]+mColorRadius.val[0] <= 255) ? hsvColor.val[0]+mColorRadius.val[0] : 255;
@@ -63,6 +64,7 @@ public class ColorBlobDetector {
         Imgproc.cvtColor(spectrumHsv, mSpectrum, Imgproc.COLOR_HSV2RGB_FULL, 4);
     }
 
+    //Draw Spectrume
     public Mat getSpectrum() {
         return mSpectrum;
     }
@@ -71,6 +73,7 @@ public class ColorBlobDetector {
         mMinContourArea = area;
     }
 
+    //process color detection
     public void process(Mat rgbaImage) {
         Imgproc.pyrDown(rgbaImage, mPyrDownMat);
         Imgproc.pyrDown(mPyrDownMat, mPyrDownMat);
@@ -106,6 +109,7 @@ public class ColorBlobDetector {
         }
     }
 
+    //Get point intercept of color object
     public List<MatOfPoint> getContours() {
         return mContours;
     }

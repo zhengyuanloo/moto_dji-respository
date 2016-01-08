@@ -27,6 +27,8 @@ import static org.opencv.android.CameraBridgeViewBase.*;
 public class CornerDetectionActivity extends AppCompatActivity implements CvCameraViewListener2 {
 
     private static final String TAG ="CornerDetectionActivity" ;
+
+    //Check connection with openCV manager
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
 
         @Override
@@ -60,7 +62,6 @@ public class CornerDetectionActivity extends AppCompatActivity implements CvCame
     private Mat mRgba;
     private Mat                    mGray;
 
-
     private CameraBridgeViewBase mOpenCvCameraView;
 
     public CornerDetectionActivity(){
@@ -73,6 +74,7 @@ public class CornerDetectionActivity extends AppCompatActivity implements CvCame
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_corner_detection);
 
+        //initial the camera view in order to display real time image from phone camera
         mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.camera_ConerDetect);
         mOpenCvCameraView.setCvCameraViewListener(this);
     }
@@ -80,6 +82,8 @@ public class CornerDetectionActivity extends AppCompatActivity implements CvCame
     @Override
     protected void onResume() {
         super.onResume();
+
+        //initial and load the openCV manager
         OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);
     }
 
@@ -112,6 +116,8 @@ public class CornerDetectionActivity extends AppCompatActivity implements CvCame
     private final static int maxCorners = 100;
     private final static Scalar circleColor = new Scalar(0, 255, 0);
 
+
+    //implement color detection here
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
 
@@ -122,6 +128,7 @@ public class CornerDetectionActivity extends AppCompatActivity implements CvCame
 
         MatOfPoint corners = new MatOfPoint();
 
+        //track object corner
         Imgproc.goodFeaturesToTrack(mGray,
                 corners,
                 maxCorners,
@@ -132,6 +139,7 @@ public class CornerDetectionActivity extends AppCompatActivity implements CvCame
                 useHarrisDetector,
                 k);
 
+        //draw tiny circle on those object corner
         Point[] points = corners.toArray();
         for (Point p : points) {
             Imgproc.circle(mRgba, p, 5, circleColor);

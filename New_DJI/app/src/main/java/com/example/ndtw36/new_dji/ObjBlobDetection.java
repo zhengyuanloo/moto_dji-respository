@@ -14,6 +14,8 @@ import java.util.List;
 /**
  * Created by NDTW36 on 11/23/2015.
  */
+
+//this class is associated with Object ObjDetectImgProcActivity similar to ColorBlob Detector
 public class ObjBlobDetection {
     // Lower and Upper bounds for range checking in HSV color space
     private Scalar mLowerBound = new Scalar(0);

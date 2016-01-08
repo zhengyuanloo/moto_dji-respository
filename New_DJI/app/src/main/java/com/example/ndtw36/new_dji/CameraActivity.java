@@ -41,6 +41,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     private DjiGLSurfaceView mDjiGLSurfaceView;
     private DJIReceivedVideoDataCallBack mReceivedVideoDataCallBack = null;
 
+    //Display message
     private Handler handler = new Handler(new Handler.Callback() {
 
         @Override
@@ -59,7 +60,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         }
     });
 
-
+   //Display time second during record video
     private Handler handlerTimer = new Handler();
     Runnable runnable = new Runnable(){
         @Override
@@ -85,12 +86,15 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
         DroneCode = 1;
 
+        //select decoded type (hardware or software)
         DJIDrone.getDjiCamera().setDecodeType(DJICameraDecodeTypeDef.DecoderType.Software);
 
+        //initial the djiSurfaceView view in order to display real time image from drone camera
         mDjiGLSurfaceView = (DjiGLSurfaceView)findViewById(R.id.DjiSurfaceView_02);
 
         mDjiGLSurfaceView.start();
 
+        //Call video buffer data from drone
         mReceivedVideoDataCallBack = new DJIReceivedVideoDataCallBack(){
 
             @Override
@@ -103,6 +107,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
         };
 
+        //Get drone camera state
         DJIDrone.getDjiCamera().setDjiCameraSystemStateCallBack(new DJICameraSystemStateCallBack() {
 
             @Override
@@ -128,11 +133,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         captureMode.setOnClickListener(this);
     }
 
-    /**
-     * Called when a view has been clicked.
-     *
-     * @param v The view that was clicked.
-     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -157,23 +157,21 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     private void captureAction(){
 
         DJICameraSettingsTypeDef.CameraMode cameraMode = DJICameraSettingsTypeDef.CameraMode.Camera_Capture_Mode;
-        DJIDrone.getDjiCamera().setCameraMode(cameraMode, new DJIExecuteResultCallback(){
+        DJIDrone.getDjiCamera().setCameraMode(cameraMode, new DJIExecuteResultCallback() {
 
             @Override
-            public void onResult(DJIError mErr)
-            {
+            public void onResult(DJIError mErr) {
                 // TODO Auto-generated method stub
-                String result = "errorCode =" + mErr.errorCode + "\n"+"errorDescription =" + DJIError.getErrorDescriptionByErrcode(mErr.errorCode);
+                String result = "errorCode =" + mErr.errorCode + "\n" + "errorDescription =" + DJIError.getErrorDescriptionByErrcode(mErr.errorCode);
                 if (mErr.errorCode == DJIError.RESULT_OK) {
                     DJICameraSettingsTypeDef.CameraCaptureMode photoMode = DJICameraSettingsTypeDef.CameraCaptureMode.Camera_Single_Capture; // Set the camera capture mode as Camera_Single_Capture
 
-                    DJIDrone.getDjiCamera().startTakePhoto(photoMode, new DJIExecuteResultCallback(){
+                    DJIDrone.getDjiCamera().startTakePhoto(photoMode, new DJIExecuteResultCallback() {
 
                         @Override
-                        public void onResult(DJIError mErr)
-                        {
+                        public void onResult(DJIError mErr) {
                             // TODO Auto-generated method stub
-                            String result = "errorCode =" + mErr.errorCode + "\n"+"errorDescription =" + DJIError.getErrorDescriptionByErrcode(mErr.errorCode);
+                            String result = "errorCode =" + mErr.errorCode + "\n" + "errorDescription =" + DJIError.getErrorDescriptionByErrcode(mErr.errorCode);
                             handler.sendMessage(handler.obtainMessage(SHOWTOAST, result));  // display the returned message in the callback
                         }
 
@@ -190,23 +188,21 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     // function for starting recording
     private void recordAction(){
         DJICameraSettingsTypeDef.CameraMode cameraMode = DJICameraSettingsTypeDef.CameraMode.Camera_Record_Mode;
-        DJIDrone.getDjiCamera().setCameraMode(cameraMode, new DJIExecuteResultCallback(){
+        DJIDrone.getDjiCamera().setCameraMode(cameraMode, new DJIExecuteResultCallback() {
 
             @Override
-            public void onResult(DJIError mErr)
-            {
+            public void onResult(DJIError mErr) {
                 // TODO Auto-generated method stub
-                String result = "errorCode =" + mErr.errorCode + "\n"+"errorDescription =" + DJIError.getErrorDescriptionByErrcode(mErr.errorCode);
+                String result = "errorCode =" + mErr.errorCode + "\n" + "errorDescription =" + DJIError.getErrorDescriptionByErrcode(mErr.errorCode);
                 if (mErr.errorCode == DJIError.RESULT_OK) {
 
 
-                    DJIDrone.getDjiCamera().startRecord(new DJIExecuteResultCallback(){
+                    DJIDrone.getDjiCamera().startRecord(new DJIExecuteResultCallback() {
 
                         @Override
-                        public void onResult(DJIError mErr)
-                        {
+                        public void onResult(DJIError mErr) {
                             // TODO Auto-generated method stub
-                            String result = "errorCode =" + mErr.errorCode + "\n"+"errorDescription =" + DJIError.getErrorDescriptionByErrcode(mErr.errorCode);
+                            String result = "errorCode =" + mErr.errorCode + "\n" + "errorDescription =" + DJIError.getErrorDescriptionByErrcode(mErr.errorCode);
                             handler.sendMessage(handler.obtainMessage(SHOWTOAST, result));  // display the returned message in the callback
                             handlerTimer.postDelayed(runnable, TIME); // Start the timer for recording
                         }
@@ -223,13 +219,12 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     }
     // function for stopping recording
     private void stopRecord(){
-        DJIDrone.getDjiCamera().stopRecord(new DJIExecuteResultCallback(){
+        DJIDrone.getDjiCamera().stopRecord(new DJIExecuteResultCallback() {
 
             @Override
-            public void onResult(DJIError mErr)
-            {
+            public void onResult(DJIError mErr) {
                 // TODO Auto-generated method stub
-                String result = "errorCode =" + mErr.errorCode + "\n"+"errorDescription =" + DJIError.getErrorDescriptionByErrcode(mErr.errorCode);
+                String result = "errorCode =" + mErr.errorCode + "\n" + "errorDescription =" + DJIError.getErrorDescriptionByErrcode(mErr.errorCode);
                 handler.sendMessage(handler.obtainMessage(SHOWTOAST, result));
                 handlerTimer.removeCallbacks(runnable); // Start the timer for recording
                 i = 0; // Reset the timer for recording
@@ -238,6 +233,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         });
     }
 
+    //show message in AlertDialog
     public void showMessage(String title, String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title)
@@ -253,38 +249,17 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
-    protected void onResume() {
-        // TODO Auto-generated method stub
-
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        // TODO Auto-generated method stub
-
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        // TODO Auto-generated method stub
-        super.onStop();
-    }
-
-    @Override
     protected void onDestroy()
     {
-        // TODO Auto-generated method stub
-
         // The following codes are used to destroy the SurfaceView.
         if(DJIDrone.getDjiCamera() != null)
             DJIDrone.getDjiCamera().setReceivedVideoDataCallBack(null);
         mDjiGLSurfaceView.destroy();
         super.onDestroy();
-        // The following codes are used to kill the application process.
-      //  android.os.Process.killProcess(Process.myPid());
     }
+
+    // The following codes are used to kill the application process.
+    //  android.os.Process.killProcess(Process.myPid());
     // The following codes are used to exit FPVActivity when pressing the phone's "return" button twice.
     private static boolean first = false;
     private Timer ExitTimer = new Timer();

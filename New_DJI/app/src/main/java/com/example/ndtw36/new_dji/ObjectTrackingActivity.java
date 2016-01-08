@@ -25,6 +25,7 @@ import org.opencv.imgproc.Imgproc;
 import java.util.ArrayList;
 import java.util.List;
 
+//Measure distance between the object and drone by detect color object
 public class ObjectTrackingActivity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2,View.OnTouchListener {
 
     private static final String TAG ="ObjectTrackerActivity" ;
@@ -39,6 +40,8 @@ public class ObjectTrackingActivity extends AppCompatActivity implements CameraB
     private Scalar               CONTOUR_COLOR;
     MatOfPoint2f approxCurve;
 
+
+    //Check connection with openCV manager
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
 
         @Override
@@ -169,9 +172,10 @@ public class ObjectTrackingActivity extends AppCompatActivity implements CameraB
                 // draw enclosing rectangle (all same color, but you could use variable i to make them unique)
                   Imgproc.rectangle(mRgba, new Point(rect.x,rect.y), new Point(rect.x+rect.width,rect.y+rect.height), new Scalar(255, 0, 0, 255), 3);
 
-                distance=distanceCal(0.14,1050,rect.width);
+                //calcuate distance after have focul length and object's width
+                distance=distanceCal(0.15,1031,rect.width);
 
-                //double ww=(rect.width*0.6)/0.14;
+               // double ww=(rect.width*0.7)/0.15;
 
                 Imgproc.putText(mRgba,Double.toString(distance),new Point(rect.x,rect.y),Core.FONT_HERSHEY_SCRIPT_SIMPLEX, 2.2, new Scalar(200,200,0),2);
             }
@@ -185,6 +189,7 @@ public class ObjectTrackingActivity extends AppCompatActivity implements CameraB
     }
 
 
+    //detect color when selecting color by touching the screen
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         int cols = mRgba.cols();

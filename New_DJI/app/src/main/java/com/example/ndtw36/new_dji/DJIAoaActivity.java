@@ -24,6 +24,7 @@ public class DJIAoaActivity extends AppCompatActivity {
             //finish();
         }else {
 
+            //check connection between controller and device
             isStarted = true;
             ServiceManager.getInstance();
             UsbAccessoryService.registerAoaReceiver(this);

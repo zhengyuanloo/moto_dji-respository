@@ -34,6 +34,7 @@ public class EdgeDetectActivity extends AppCompatActivity implements CameraBridg
     int noEdge=2;
     private EditText etNo;
 
+    //Check connection with openCV manager
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
 
         @Override
@@ -76,6 +77,7 @@ public class EdgeDetectActivity extends AppCompatActivity implements CameraBridg
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_edge_detect);
 
+        //initial the camera view in order to display real time image from phone camera
         mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.camera_EdgeDetect);
         mOpenCvCameraView.setCvCameraViewListener(this);
     }
@@ -111,12 +113,13 @@ public class EdgeDetectActivity extends AppCompatActivity implements CameraBridg
     }
 
 
-
+    //implement edge detection here
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         mRgba = inputFrame.rgba();
         mGray=inputFrame.gray();
 
+        //detect edge
         Imgproc.Canny(inputFrame.gray(), dst, 80, 100);
         Imgproc.cvtColor(dst, mRgba, Imgproc.COLOR_GRAY2RGBA, 4);
 

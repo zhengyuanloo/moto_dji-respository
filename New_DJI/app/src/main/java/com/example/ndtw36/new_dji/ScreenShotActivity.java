@@ -38,6 +38,8 @@ import dji.sdk.interfaces.DJICameraSystemStateCallBack;
 import dji.sdk.interfaces.DJIReceivedVideoDataCallBack;
 import dji.sdk.widget.DjiGLSurfaceView;
 
+
+//Having a screenshot activity
 public class ScreenShotActivity extends AppCompatActivity {
 
     private static final String TAG = "ScreenShotActivity";
@@ -66,9 +68,6 @@ public class ScreenShotActivity extends AppCompatActivity {
         @Override
         public boolean handleMessage(Message msg) {
             switch (msg.what) {
-                case SHOWDIALOG:
-                    //showMessage("Activation Message",(String)msg.obj);
-                    break;
                 case SHOWTOAST:
                     Toast.makeText(ScreenShotActivity.this, (String) msg.obj, Toast.LENGTH_SHORT).show();
                     break;
@@ -84,13 +83,11 @@ public class ScreenShotActivity extends AppCompatActivity {
     Runnable runnable = new Runnable(){
         @Override
         public void run() {
-            // handler自带方法实现定时器
             try {
 
                 handlerTimer.postDelayed(this, TIME);
 
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -127,7 +124,7 @@ public class ScreenShotActivity extends AppCompatActivity {
             @Override
             public void onResult(byte[] videoBuffer, int size)
             {
-                // TODO Auto-generated method stub
+
                 passVideoDJI(videoBuffer,size);
                 mDjiGLSurfaceView.setDataToDecoder(videoBuffer, size);
             }
@@ -139,7 +136,7 @@ public class ScreenShotActivity extends AppCompatActivity {
 
             @Override
             public void onResult(DJICameraSystemState state) {
-                // TODO Auto-generated method stub
+
                 if (state.isTakingContinusPhoto) {
                     handler.sendMessage(handler.obtainMessage(SHOWTOAST, "isTakingContinuousPhoto"));
                 }

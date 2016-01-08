@@ -77,6 +77,7 @@ public class GroundStationMapsActivity extends FragmentActivity implements View.
     private Timer mTimer;
     private TimerTask mTask;
 
+    //Display message
     private Handler handler = new Handler(new Handler.Callback() {
 
         @Override
@@ -100,6 +101,7 @@ public class GroundStationMapsActivity extends FragmentActivity implements View.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ground_station_maps);
 
+        //initial the map view
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
 
@@ -195,11 +197,6 @@ public class GroundStationMapsActivity extends FragmentActivity implements View.
         });
     }
 
-    /**
-     * Called when a view has been clicked.
-     *
-     * @param v The view that was clicked.
-     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -242,7 +239,7 @@ public class GroundStationMapsActivity extends FragmentActivity implements View.
                 break;
             }
             case R.id.takeoff:{
-                aircraftTakeOff();
+                aircraftTakeOff();//for taking off
                 break;
             }
             default:
@@ -283,14 +280,13 @@ public class GroundStationMapsActivity extends FragmentActivity implements View.
 
             @Override
             public void onResult(DJIGroundStationTypeDef.GroundStationResult result) {
-                // TODO Auto-generated method stub
+
                 String ResultsString = "opens result =" + result.toString();
                 handler.sendMessage(handler.obtainMessage(SHOWTOAST, ResultsString));
 
                 DJIDrone.getDjiGroundStation().oneKeyFly(new DJIGroundStationExecuteCallBack() {
                     @Override
                     public void onResult(DJIGroundStationTypeDef.GroundStationResult result) {
-                        // TODO Auto-generated method stub
 
                         String ResultsString = "one key fly result =" + result.toString();
                         handler.sendMessage(handler.obtainMessage(SHOWTOAST, ResultsString));
@@ -342,7 +338,7 @@ public class GroundStationMapsActivity extends FragmentActivity implements View.
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // TODO Auto-generated method stub
+
                 if (isChecked){
                     repeatGSTask = true;
                     repeatEnable_SW.setChecked(true);
@@ -358,7 +354,7 @@ public class GroundStationMapsActivity extends FragmentActivity implements View.
 
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // TODO Auto-generated method stub
+
                 if (checkedId == R.id.lowSpeed){
                     speedGSTask = 1.0f;
                 } else if (checkedId == R.id.MidSpeed){
@@ -471,7 +467,7 @@ public class GroundStationMapsActivity extends FragmentActivity implements View.
 //
 //            @Override
 //            public void onResult(DJIMcIocType result) {
-//                // TODO Auto-generated method stub
+//
 //                String ResultsString = "return code =" + result.toString();
 //                handler.sendMessage(handler.obtainMessage(SHOWTOAST, ResultsString));
 //            }

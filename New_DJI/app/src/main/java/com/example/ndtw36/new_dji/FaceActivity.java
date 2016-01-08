@@ -26,6 +26,8 @@ import java.io.InputStream;
 public class FaceActivity extends AppCompatActivity implements CvCameraViewListener2 {
 
     private static final String TAG ="FaceActivty" ;
+
+    //Check connection with openCV manager
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
 
         @Override
@@ -57,6 +59,7 @@ public class FaceActivity extends AppCompatActivity implements CvCameraViewListe
         }
     };
 
+    //initial Face detector class or function in openCV library
     private void initializeOpenCVDependencies(){
         try{
             // Copy the resource into a temp file so OpenCV can load it
@@ -113,6 +116,7 @@ public class FaceActivity extends AppCompatActivity implements CvCameraViewListe
 
         setContentView(R.layout.activity_face);
 
+        //initial the camera view in order to display real time image from phone camera
         mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.camera_view);
         mOpenCvCameraView.setCvCameraViewListener(this);
     }
@@ -120,6 +124,7 @@ public class FaceActivity extends AppCompatActivity implements CvCameraViewListe
     @Override
     protected void onResume() {
         super.onResume();
+        //initial and load the openCV manager
         OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);
     }
 
@@ -144,6 +149,7 @@ public class FaceActivity extends AppCompatActivity implements CvCameraViewListe
         mRgba.release();
     }
 
+    //implement face detection here
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
 
@@ -160,6 +166,7 @@ public class FaceActivity extends AppCompatActivity implements CvCameraViewListe
                     new Size( mAbsoluteFaceSize,  mAbsoluteFaceSize), new Size());
         }
 
+        //Draw rectangle on face detected
         Rect[] facesArray = faces.toArray();
         for (int i = 0; i < facesArray.length; i++)
             Imgproc.rectangle(mRgba, facesArray[i].tl(), facesArray[i].br(), FACE_RECT_COLOR, 3);

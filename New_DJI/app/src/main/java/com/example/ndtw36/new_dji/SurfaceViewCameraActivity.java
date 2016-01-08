@@ -25,6 +25,8 @@ import dji.sdk.api.mediacodec.DJIVideoDecoder;
 import dji.sdk.interfaces.DJIReceivedVideoDataCallBack;
 import dji.sdk.widget.DjiGLSurfaceView;
 
+
+//this class is similar to cameraActivity
 public class SurfaceViewCameraActivity extends AppCompatActivity implements SurfaceHolder.Callback {
 
     private static final String TAG = "SurfaceViewCameraActivity";
@@ -38,6 +40,7 @@ public class SurfaceViewCameraActivity extends AppCompatActivity implements Surf
     SurfaceView surfaceView;
     private DJIVideoDecoder mVideoDecoder = null;
 
+    //display message
     private Handler handler = new Handler(new Handler.Callback() {
 
         @Override
@@ -65,7 +68,6 @@ public class SurfaceViewCameraActivity extends AppCompatActivity implements Surf
     Runnable runnable = new Runnable(){
         @Override
         public void run() {
-            // handler自带方法实现定时器
             try {
 
                 handlerTimer.postDelayed(this, TIME);
@@ -82,6 +84,7 @@ public class SurfaceViewCameraActivity extends AppCompatActivity implements Surf
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_surface_view_camera);
 
+        //initial the SurfaceView view in order to display real time image from drone camera
         surfaceView=(SurfaceView)findViewById(R.id.surfaceView);
         surfaceView.getHolder().addCallback(this);
 
@@ -104,10 +107,8 @@ public class SurfaceViewCameraActivity extends AppCompatActivity implements Surf
                     fout.close();
 
                 } catch (FileNotFoundException e) {
-                    // TODO Auto-generated catch block
                     Toast.makeText(SurfaceViewCameraActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     Toast.makeText(SurfaceViewCameraActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -130,9 +131,11 @@ public class SurfaceViewCameraActivity extends AppCompatActivity implements Surf
     }
 
     private void initDecoder(Surface surface) {
+        ///select decoded type (hardware or software)
         DJIDrone.getDjiCamera().setDecodeType(DJICameraDecodeTypeDef.DecoderType.Hardware);
         mVideoDecoder = new DJIVideoDecoder(this, surface);
 
+        //Call video buffer data from drone
         mReceivedVideoDataCallBack = new DJIReceivedVideoDataCallBack(){
 
             @Override

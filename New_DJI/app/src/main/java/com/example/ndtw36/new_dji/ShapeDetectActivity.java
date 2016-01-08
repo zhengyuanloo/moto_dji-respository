@@ -38,6 +38,7 @@ public class ShapeDetectActivity extends AppCompatActivity implements CameraBrid
     int noEdge=2;
     private EditText etNo;
 
+    //Check connection with openCV manager
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
 
         @Override
@@ -126,8 +127,7 @@ public class ShapeDetectActivity extends AppCompatActivity implements CameraBrid
         dst.release();
     }
 
-
-
+    //implement shape detection
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         mRgba = inputFrame.rgba();
@@ -135,11 +135,13 @@ public class ShapeDetectActivity extends AppCompatActivity implements CameraBrid
 
         if(noEdge!=2){
 
+            //detect edge before determine corner
         Imgproc.cvtColor(mRgba, mGray, Imgproc.COLOR_RGBA2RGB);
         Imgproc.Canny(mGray, bw, 80, 100);
 
         List<MatOfPoint> contours=new ArrayList<>();
 
+            //find corner
         Imgproc.findContours(bw.clone(),contours,new Mat(),Imgproc.RETR_LIST, Imgproc.CHAIN_APPROX_SIMPLE);
 
         dst=inputFrame.rgba();

@@ -16,6 +16,8 @@ import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
 
+
+//This class is associated with GroundStationMapsActivity in order to track location
 public class GPSTracker extends Service implements LocationListener {
 
     private  Context mContext;

@@ -27,6 +27,7 @@ import java.util.Vector;
 
 import static org.opencv.android.CameraBridgeViewBase.*;
 
+//Object detection using color detection
 public class ObjectTrackerActivity extends AppCompatActivity implements CvCameraViewListener2,OnTouchListener{
 
     private static final String TAG ="ObjectTrackerActivity" ;
@@ -41,6 +42,7 @@ public class ObjectTrackerActivity extends AppCompatActivity implements CvCamera
     private Scalar               CONTOUR_COLOR;
     MatOfPoint2f approxCurve;
 
+    // Initialize the OpenCv Camera Manager
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
 
         @Override
@@ -121,6 +123,7 @@ public class ObjectTrackerActivity extends AppCompatActivity implements CvCamera
     }
 
 
+    //implement object track using color detection
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         mRgba = inputFrame.rgba();

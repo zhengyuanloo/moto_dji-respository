@@ -20,6 +20,7 @@ import dji.sdk.api.mediacodec.DJIVideoDecoder;
 import dji.sdk.interfaces.DJIReceivedVideoDataCallBack;
 import dji.sdk.widget.DjiGLSurfaceView;
 
+//This class is similar to SurfaceViewCamera
 public class TextureCameraActivity extends AppCompatActivity implements TextureView.SurfaceTextureListener {
 
     private static final String TAG = "TextureCameraActivity";
@@ -34,6 +35,8 @@ public class TextureCameraActivity extends AppCompatActivity implements TextureV
     private DJIVideoDecoder mVideoDecoder = null;
     private TextureView mVideoSurface;
 
+
+    //display message
     private Handler handler = new Handler(new Handler.Callback() {
 
         @Override
@@ -77,14 +80,18 @@ public class TextureCameraActivity extends AppCompatActivity implements TextureV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_texture_camera);
 
+        //initial the SurfaceView view in order to display real time image from drone camera
         mVideoSurface = (TextureView)findViewById(R.id.texture_surface);
         mVideoSurface.setSurfaceTextureListener(this);
     }
 
     private void initDecoder(Surface surface) {
+
+        ///select decoded type (hardware or software)
         DJIDrone.getDjiCamera().setDecodeType(DJICameraDecodeTypeDef.DecoderType.Hardware);
         mVideoDecoder = new DJIVideoDecoder(this, surface);
 
+        //Call video buffer data from drone
         mReceivedVideoDataCallBack = new DJIReceivedVideoDataCallBack(){
 
             @Override
