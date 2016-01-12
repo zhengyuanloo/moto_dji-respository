@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
                         @Override
                         public void onGetPermissionResult(int result) {
-                            // TODO Auto-generated method stub
+
                             Log.e(TAG, "onGetPermissionResult = " + result);
                             Log.e(TAG, "onGetPermissionResultDescription = " + DJIError.getCheckPermissionErrorDescription(result));
                             if (result == 0) {
@@ -95,20 +95,20 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        // TODO Auto-generated method stub
+
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        // TODO Auto-generated method stub
+
         super.onPause();
     }
 
     @Override
     protected void onDestroy()
     {
-        // TODO Auto-generated method stub
+
         onUnInitSDK();
         super.onDestroy();
     }
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        DJIDrone.connectToDrone();
+        DJIDrone.connectToDrone();//start connecting with drone after initial drone type
     }
 
     //Disconnect the drone
@@ -153,24 +153,24 @@ public class MainActivity extends AppCompatActivity {
 
     //List of message and class activity
     private static final DemoInfo[] demos = {
-           new DemoInfo("Camera DJI","Capture Photo Activity", CameraActivity.class),
-            new DemoInfo("Ground Station DJI","Ground Station Maps Activity", GroundStationMapsActivity.class),
-            new DemoInfo("Texture Camera DJI","Texture Camera Activity", TextureCameraActivity.class),
-            new DemoInfo("SurfaceView Camera DJI","SurfaceView Camera Activity", SurfaceViewCameraActivity.class),
-            new DemoInfo("Download Media Data DJI","Download Media Data Activity", DownloadMediaActivity.class),
-            new DemoInfo("ScreenShot DJI","ScreenShot Activity", ScreenShotActivity.class),
-            new DemoInfo("Face Detect DJI","FaceDetect Activity", FaceDetectActivity.class),
+           new DemoInfo("Camera DJI","Capture Photo Activity", CameraActivity.class),// Image Processing (software decoder type)
+            new DemoInfo("Ground Station DJI","Ground Station Maps Activity", GroundStationMapsActivity.class),//google map ground station /flight control
+            new DemoInfo("Texture Camera DJI","Texture Camera Activity", TextureCameraActivity.class),// Image Processing(hardware decoder type)
+            new DemoInfo("SurfaceView Camera DJI","SurfaceView Camera Activity", SurfaceViewCameraActivity.class), //image processing (hardware decoder type)
+            new DemoInfo("Download Media Data DJI","Download Media Data Activity", DownloadMediaActivity.class), //media data download from drone SD card memory
+            new DemoInfo("ScreenShot DJI","ScreenShot Activity", ScreenShotActivity.class), // Screen shot surface displayed on device
+            new DemoInfo("Face Detect DJI","FaceDetect Activity", FaceDetectActivity.class), //face detection on image/photo
           //  new DemoInfo("Distance Measure DJI","Distance Measure Activity",DistanceMeasureActivity.class),
-            new DemoInfo("Auto Fly DJI","Auto Fly Activity",AutoFlyControllActivity.class),
-            new DemoInfo("Face Activity","Face Activity",FaceActivity.class),
+            new DemoInfo("Auto Fly DJI","Auto Fly Activity",AutoFlyControllActivity.class), //control flight speed and movement
+            new DemoInfo("Face Activity","Face Activity",FaceActivity.class),//real time face detection image processing
           //  new DemoInfo("Object Detection Activity","Object Detection Activity",ObjectDetectionCamPreviewActivity.class),
             //new DemoInfo("Edge Detection Activity","Edge Detection Activity",EdgeDetectionActivity.class),
-            new DemoInfo("Corner Detection Activity","Corner Detection Activity",CornerDetectionActivity.class),
-            new DemoInfo("Object Tracker Activity","Object Tracker Activity",ObjectTrackerActivity.class),
-            new DemoInfo("Shape Detect Activity","Shape Detect Activity",ShapeDetectActivity.class),
-            new DemoInfo("Distance Detect Activity","Distance Detect Activity",ObjectTrackingActivity.class),
-            new DemoInfo("Edge Detect Activity","Edge Detect Activity",EdgeDetectActivity.class),
-            new DemoInfo("Line Detect Activity","Line Detect Activity",LineDetectActivity.class),
+            new DemoInfo("Corner Detection Activity","Corner Detection Activity",CornerDetectionActivity.class),// real time corner detect
+            new DemoInfo("Object Tracker Activity","Object Tracker Activity",ObjectTrackerActivity.class),//real time color detection (object recognition)
+            new DemoInfo("Shape Detect Activity","Shape Detect Activity",ShapeDetectActivity.class),//real time shape detection (shape recognition)
+            new DemoInfo("Distance Detect Activity","Distance Detect Activity",ObjectTrackingActivity.class),//distance detection from drone to object
+            new DemoInfo("Edge Detect Activity","Edge Detect Activity",EdgeDetectActivity.class), //real time edge detection
+            new DemoInfo("Line Detect Activity","Line Detect Activity",LineDetectActivity.class),//line detect
     };
 
     //ListView adaptor for MainActivity

@@ -145,6 +145,7 @@ public class ScreenShotActivity extends AppCompatActivity {
 
         DJIDrone.getDjiCamera().setReceivedVideoDataCallBack(mReceivedVideoDataCallBack);
 
+        //start screenshot
         btn.setOnClickListener(new View.OnClickListener() {
             @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override
@@ -176,6 +177,8 @@ public class ScreenShotActivity extends AppCompatActivity {
             Image image = null;
             FileOutputStream fos = null;
             Bitmap bitmap = null;
+
+            //store screenshot image in memory (inside myscreen folder)
 
             try {
                 image = mImageReader.acquireLatestImage();

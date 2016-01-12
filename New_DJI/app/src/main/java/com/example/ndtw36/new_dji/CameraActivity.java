@@ -65,14 +65,12 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     Runnable runnable = new Runnable(){
         @Override
         public void run() {
-            // handler自带方法实现定时器
             try {
 
                 handlerTimer.postDelayed(this, TIME);
                 viewTimer.setText(Integer.toString(i++));
 
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -100,7 +98,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onResult(byte[] videoBuffer, int size)
             {
-                // TODO Auto-generated method stub
                 mDjiGLSurfaceView.setDataToDecoder(videoBuffer, size);
             }
 
@@ -113,7 +110,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onResult(DJICameraSystemState state)
             {
-                // TODO Auto-generated method stub
+
                 if (state.isTakingContinusPhoto) {
                     handler.sendMessage(handler.obtainMessage(SHOWTOAST, "isTakingContinuousPhoto"));
                 }
@@ -161,7 +158,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
             @Override
             public void onResult(DJIError mErr) {
-                // TODO Auto-generated method stub
                 String result = "errorCode =" + mErr.errorCode + "\n" + "errorDescription =" + DJIError.getErrorDescriptionByErrcode(mErr.errorCode);
                 if (mErr.errorCode == DJIError.RESULT_OK) {
                     DJICameraSettingsTypeDef.CameraCaptureMode photoMode = DJICameraSettingsTypeDef.CameraCaptureMode.Camera_Single_Capture; // Set the camera capture mode as Camera_Single_Capture
@@ -170,7 +166,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
                         @Override
                         public void onResult(DJIError mErr) {
-                            // TODO Auto-generated method stub
                             String result = "errorCode =" + mErr.errorCode + "\n" + "errorDescription =" + DJIError.getErrorDescriptionByErrcode(mErr.errorCode);
                             handler.sendMessage(handler.obtainMessage(SHOWTOAST, result));  // display the returned message in the callback
                         }
@@ -192,7 +187,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
             @Override
             public void onResult(DJIError mErr) {
-                // TODO Auto-generated method stub
                 String result = "errorCode =" + mErr.errorCode + "\n" + "errorDescription =" + DJIError.getErrorDescriptionByErrcode(mErr.errorCode);
                 if (mErr.errorCode == DJIError.RESULT_OK) {
 
@@ -201,7 +195,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
                         @Override
                         public void onResult(DJIError mErr) {
-                            // TODO Auto-generated method stub
                             String result = "errorCode =" + mErr.errorCode + "\n" + "errorDescription =" + DJIError.getErrorDescriptionByErrcode(mErr.errorCode);
                             handler.sendMessage(handler.obtainMessage(SHOWTOAST, result));  // display the returned message in the callback
                             handlerTimer.postDelayed(runnable, TIME); // Start the timer for recording
@@ -223,7 +216,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
             @Override
             public void onResult(DJIError mErr) {
-                // TODO Auto-generated method stub
+
                 String result = "errorCode =" + mErr.errorCode + "\n" + "errorDescription =" + DJIError.getErrorDescriptionByErrcode(mErr.errorCode);
                 handler.sendMessage(handler.obtainMessage(SHOWTOAST, result));
                 handlerTimer.removeCallbacks(runnable); // Start the timer for recording
@@ -275,7 +268,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        // TODO Auto-generated method stub
+
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             Log.d(TAG,"onKeyDown KEYCODE_BACK");
 

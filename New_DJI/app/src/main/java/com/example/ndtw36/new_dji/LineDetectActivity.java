@@ -189,6 +189,7 @@ public class LineDetectActivity extends AppCompatActivity implements CameraBridg
         //draw lines along 2 points
         for (int x = 0; x < lines.cols(); x++)
         {
+            //define 2 points (x,y)
             double[] vec = lines.get(0, x);
             final double x1 = vec[0],
                     y1 = vec[1],
@@ -197,31 +198,10 @@ public class LineDetectActivity extends AppCompatActivity implements CameraBridg
             final Point start = new Point(x1, y1);
             final Point end = new Point(x2, y2);
 
-            //Calculate length and angle.
-            double xAxis=x1-x2;
-            double yAxis=y1-y2;
-
-            if(xAxis<0){
-                xAxis=-xAxis;
-            }
-            if(yAxis<0){
-                yAxis=-yAxis;
-            }
-
-            double angle=Math.tan(xAxis/yAxis);
-            final double degree=angle*(180/Math.PI);
-
-            if (x1 > 230 && x1 < 1000) {
-                if (x2 > 230 && x2 < 1000) {
-                    if (pt1.y > 760) {
-                        tvCdn.setText("");
-                    } else {
 
                         //start draw line between 2 points
                         Imgproc.line(mRgba, start, end, new Scalar(255, 0, 0), 3);
-                    }
-                }
-            }
+
         }
 
         return mRgba;

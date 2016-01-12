@@ -91,7 +91,7 @@ public class AutoFlyControllActivity extends AppCompatActivity {
             @Override
             public void onResult(byte[] videoBuffer, int size)
             {
-                // TODO Auto-generated method stub
+
                 mDjiGLSurfaceView.setDataToDecoder(videoBuffer, size);
             }
 
@@ -103,7 +103,7 @@ public class AutoFlyControllActivity extends AppCompatActivity {
 
             @Override
             public void onResult(DJICameraSystemState state) {
-                // TODO Auto-generated method stub
+
                 if (state.isTakingContinusPhoto) {
                     handler.sendMessage(handler.obtainMessage(SHOWTOAST, "isTakingContinuousPhoto"));
                 }
@@ -123,9 +123,9 @@ public class AutoFlyControllActivity extends AppCompatActivity {
         btnDegree=(Button)findViewById(R.id.btnDegree);
         etDegree=(EditText)findViewById(R.id.etDegree);
 
-       etYaw=(EditText)findViewById(R.id.etYaw);
-        etFowBack=(EditText)findViewById(R.id.etFowBack);
-        etLeftRight=(EditText)findViewById(R.id.etLeftRight);
+       etYaw=(EditText)findViewById(R.id.etYaw); //speed of yaw -500 to 500 // negative speed is anticlockwise //positive speed is clockwise
+        etFowBack=(EditText)findViewById(R.id.etFowBack);//speed of moving horizontal// positive speed is moving forward// negative speed is moving backward
+        etLeftRight=(EditText)findViewById(R.id.etLeftRight);//speed of moving horizontal// positive speed is moving right// negative speed is moving left
 
         takeOFFDrone();
         startFlightMode();
@@ -221,7 +221,7 @@ public class AutoFlyControllActivity extends AppCompatActivity {
         });
     }
 
-    //Order drone to landing
+    //Order drone to landing //th
     private void landDrone() {
        land.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -293,20 +293,19 @@ public class AutoFlyControllActivity extends AppCompatActivity {
 
                     @Override
                     public void onResult(DJIGroundStationTypeDef.GroundStationResult result) {
-                        // TODO Auto-generated method stub
+
                         String ResultsString = "opens result =" + result.toString();
                         handler.sendMessage(handler.obtainMessage(SHOWTOAST, ResultsString));
 
                         DJIDrone.getDjiGroundStation().oneKeyFly(new DJIGroundStationExecuteCallBack() {
                             @Override
                             public void onResult(DJIGroundStationTypeDef.GroundStationResult result) {
-                                // TODO Auto-generated method stub
 
                                 String ResultsString = "one key fly result =" + result.toString();
                                 handler.sendMessage(handler.obtainMessage(SHOWTOAST, ResultsString));
 
                                 if (result == DJIGroundStationTypeDef.GroundStationResult.GS_Result_Success) {
-                                    //
+
                                 }
                             }
 
@@ -320,7 +319,6 @@ public class AutoFlyControllActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        // TODO Auto-generated method stub
         mDjiGLSurfaceView.resume();
 
         DJIDrone.getDjiMC().startUpdateTimer(1000);
@@ -329,7 +327,6 @@ public class AutoFlyControllActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        // TODO Auto-generated method stub
         mDjiGLSurfaceView.pause();
 
         DJIDrone.getDjiMC().stopUpdateTimer();

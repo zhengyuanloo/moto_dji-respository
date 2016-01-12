@@ -124,11 +124,12 @@ public class CornerDetectionActivity extends AppCompatActivity implements CvCame
         mRgba = inputFrame.rgba();
         mGray = inputFrame.gray();
 
+        //Converts an image from one color space to another.
         Imgproc.cvtColor(mRgba, mGray, Imgproc.COLOR_RGB2GRAY);
 
         MatOfPoint corners = new MatOfPoint();
 
-        //track object corner
+        //Determines strong corners on an image.
         Imgproc.goodFeaturesToTrack(mGray,
                 corners,
                 maxCorners,

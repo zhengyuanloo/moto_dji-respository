@@ -24,7 +24,7 @@ import com.google.android.gms.vision.face.FaceDetector;
 
 import java.io.File;
 
-
+//this class is determine face on image/photo
 public class FaceDetectActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "FaceTracker";

@@ -41,22 +41,22 @@ public class DownloadMediaActivity extends AppCompatActivity {
 
     private static final String TAG ="DownloadMediaActivity";
 
-    private static String ALBUM_NAME = "/DJI_SDK";
-    private static final String MNT = Environment.getExternalStorageDirectory().getPath();
+    private static String ALBUM_NAME = "/DJI_SDK";//set album file
+    private static final String MNT = Environment.getExternalStorageDirectory().getPath();//get file path
     private RandomAccessFile mSyncFile;
 
     private boolean isNotPhantom2 = false;
 
     private int currentProgress = -1;
 
-    private FileListAdapter mListAdapter;
-    private ProgressDialog mDialog;
-    private ProgressDialog mDownloadDialog;
+    private FileListAdapter mListAdapter;//list of media files adaptor
+    private ProgressDialog mDialog;//create progress dialog
+    private ProgressDialog mDownloadDialog;//create progress dialog
 
-    private List<DJIMedia> mDJIMediaList = null;
-    private List<DJIMediaInfo> mDJIMediaInfoList = null;
-    private DJIMediaDirInfo mDJIMediaDirInfo = null;
-    private DJICameraSystemStateCallBack mCameraSystemStateCallBack = null;
+    private List<DJIMedia> mDJIMediaList = null;//get media files from drone memory (only phantom 2)
+    private List<DJIMediaInfo> mDJIMediaInfoList = null;//get media file from drone memory except phantom 2
+    private DJIMediaDirInfo mDJIMediaDirInfo = null;//set media dictory detail such file length, media data.
+    private DJICameraSystemStateCallBack mCameraSystemStateCallBack = null;//check camera state
 
     private final int SHOWTOAST = 1;
     private final int SHOW_PROGRESS_DIALOG = 2;
@@ -66,6 +66,8 @@ public class DownloadMediaActivity extends AppCompatActivity {
     private final int FETCH_FILE_LIST = 6;
     private final int NEED_REFRESH_FILE_LIST = 7;
 
+
+    //display message
     private Handler handler = new Handler(new Handler.Callback() {
 
         @Override
@@ -143,6 +145,8 @@ public class DownloadMediaActivity extends AppCompatActivity {
         }
     }
 
+
+    //check file path available
     private long getAvailableStore(String filePath)
     {
         StatFs statFs = new StatFs(filePath);
@@ -162,7 +166,7 @@ public class DownloadMediaActivity extends AppCompatActivity {
 
                         @Override
                         public void onResult(List<DJIMedia> mList, DJIError mError) {
-                            // TODO Auto-generated method stub
+
                             handler.sendMessage(handler.obtainMessage(HIDE_PROGRESS_DIALOG, null));
 
                             if(mError.errorCode == DJIError.RESULT_OK ){
@@ -188,7 +192,7 @@ public class DownloadMediaActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(DJIError mError)
                         {
-                            // TODO Auto-generated method stub
+
                             handler.sendMessage(handler.obtainMessage(HIDE_PROGRESS_DIALOG, null));
                             handler.sendMessage(handler.obtainMessage(SHOWTOAST, mError.errorDescription));
                         }
@@ -196,21 +200,21 @@ public class DownloadMediaActivity extends AppCompatActivity {
                         @Override
                         public void onProgress(long arg0, long arg1)
                         {
-                            // TODO Auto-generated method stub
+
 
                         }
 
                         @Override
                         public void onRateUpdate(long arg0, long arg1, long arg2)
                         {
-                            // TODO Auto-generated method stub
+
 
                         }
 
                         @Override
                         public void onStart()
                         {
-                            // TODO Auto-generated method stub
+
                             handler.sendMessage(handler.obtainMessage(SHOWTOAST, "Start"));
                         }
 
@@ -218,7 +222,7 @@ public class DownloadMediaActivity extends AppCompatActivity {
                         public void onSuccess(DJIMediaDirInfo info)
                         {
                             handler.sendMessage(handler.obtainMessage(HIDE_PROGRESS_DIALOG, null));
-                            // TODO Auto-generated method stub
+
                             if(mDJIMediaInfoList != null){
                                 mDJIMediaInfoList.clear();
                             }
@@ -312,7 +316,7 @@ public class DownloadMediaActivity extends AppCompatActivity {
 
                         @Override
                         public void onResult(byte[] buffer, int size, int progress, DJIError mErr) {
-                            // TODO Auto-generated method stub
+
                             if(mErr.errorCode == DJIError.RESULT_OK ){
                                 Log.d(TAG, "syncOneFileByIndex fetchMediaData success,progress = "+ progress);
                                 try {
@@ -361,7 +365,7 @@ public class DownloadMediaActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(DJIError mErr) {
-                    // TODO Auto-generated method stub
+
                     handler.sendMessage(handler.obtainMessage(HIDE_DOWNLOAD_PROGRESS_DIALOG, null));
                     handler.sendMessage(handler.obtainMessage(SHOWTOAST, "Failure!    " + mErr.errorCode));
                     currentProgress = -1;
@@ -369,13 +373,13 @@ public class DownloadMediaActivity extends AppCompatActivity {
 
                 @Override
                 public void onProgress(long total, long current) {
-                    // TODO Auto-generated method stub
+
 
                 }
 
                 @Override
                 public void onRateUpdate(long total, long current, long persize) {
-                    // TODO Auto-generated method stub
+
                     int tmpProgress = (int) (1.0 * current / total * 100);
                     if (tmpProgress != currentProgress) {
                         mDownloadDialog.setProgress(tmpProgress);
@@ -386,14 +390,14 @@ public class DownloadMediaActivity extends AppCompatActivity {
 
                 @Override
                 public void onStart() {
-                    // TODO Auto-generated method stub
+
                     handler.sendMessage(handler.obtainMessage(SHOW_DOWNLOAD_PROGRESS_DIALOG, null));
                     currentProgress = -1;
                 }
 
                 @Override
                 public void onSuccess(DJIMediaFile data) {
-                    // TODO Auto-generated method stub
+
                     handler.sendMessage(handler.obtainMessage(HIDE_DOWNLOAD_PROGRESS_DIALOG, null));
                     handler.sendMessage(handler.obtainMessage(SHOWTOAST, "Sync File success"));
 
@@ -421,7 +425,7 @@ public class DownloadMediaActivity extends AppCompatActivity {
 
                 @Override
                 public void run() {
-                    // TODO Auto-generated method stub
+
                     mDownloadDialog.setIcon(android.R.drawable.ic_dialog_info);
                 }
             });
@@ -431,7 +435,7 @@ public class DownloadMediaActivity extends AppCompatActivity {
 
                 @Override
                 public void onResult(DJIError mErr) {
-                    // TODO Auto-generated method stub
+
                     if(mErr.errorCode == DJIError.RESULT_OK){
                         Log.d(TAG, "getThumbnailByIndex success");
 
@@ -439,7 +443,7 @@ public class DownloadMediaActivity extends AppCompatActivity {
 
                             @Override
                             public void run() {
-                                // TODO Auto-generated method stub
+
                                 if(mDownloadDialog != null && mDownloadDialog.isShowing()){
                                     @SuppressWarnings("deprecation")
                                     Drawable mDrawable = new BitmapDrawable(mMedia.thumbnail);
@@ -461,14 +465,14 @@ public class DownloadMediaActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(DJIError arg0) {
-                    // TODO Auto-generated method stub
+
                     handler.sendMessage(handler.obtainMessage(HIDE_DOWNLOAD_PROGRESS_DIALOG, null));
                     currentProgress = -1;
                 }
 
                 @Override
                 public void onProgress(long total, long current) {
-                    // TODO Auto-generated method stub
+
                     int tmpProgress = (int) (1.0 * current / total) * 100;
                     if (tmpProgress != currentProgress) {
                         mDownloadDialog.setProgress(tmpProgress);
@@ -478,20 +482,20 @@ public class DownloadMediaActivity extends AppCompatActivity {
 
                 @Override
                 public void onRateUpdate(long arg0, long arg1, long arg2) {
-                    // TODO Auto-generated method stub
+
 
                 }
 
                 @Override
                 public void onStart() {
-                    // TODO Auto-generated method stub
+
                     handler.sendMessage(handler.obtainMessage(SHOW_DOWNLOAD_PROGRESS_DIALOG, null));
                     currentProgress = -1;
                 }
 
                 @Override
                 public void onSuccess(DJIMediaFile data) {
-                    // TODO Auto-generated method stub
+
                     handler.sendMessage(handler.obtainMessage(HIDE_DOWNLOAD_PROGRESS_DIALOG, null));
                     handler.sendMessage(handler.obtainMessage(SHOWTOAST, "Sync file success"));
                     currentProgress = -1;
@@ -530,7 +534,6 @@ public class DownloadMediaActivity extends AppCompatActivity {
                 @Override
                 public void onResult(DJIError mErr) {
                     handler.sendMessage(handler.obtainMessage(SHOWTOAST, mErr.errorDescription));
-                    // TODO Auto-generated method stub
                     if (mErr.errorCode == DJIError.RESULT_OK) {
                         handler.sendMessage(handler.obtainMessage(SHOW_PROGRESS_DIALOG, null));
                         mDJIMediaInfoList = new ArrayList<DJIMediaInfo>();
@@ -544,7 +547,7 @@ public class DownloadMediaActivity extends AppCompatActivity {
         mCameraSystemStateCallBack = new DJICameraSystemStateCallBack(){
             @Override
             public void onResult(DJICameraSystemState mState) {
-                // TODO Auto-generated method stub
+
             }
 
         };
@@ -553,7 +556,7 @@ public class DownloadMediaActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        // TODO Auto-generated method stub
+
 
         if(DJIDrone.getDjiCamera() != null){
             DJIDrone.getDjiCamera().stopUpdateTimer();
@@ -563,14 +566,13 @@ public class DownloadMediaActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        // TODO Auto-generated method stub
+
 
         if(DJIDrone.getDjiCamera() != null){
             DJIDrone.getDjiCamera().setCameraMode(DJICameraSettingsTypeDef.CameraMode.Camera_Capture_Mode, new DJIExecuteResultCallback() {
 
                 @Override
                 public void onResult(DJIError mErr) {
-                    // TODO Auto-generated method stub
 
                 }
 

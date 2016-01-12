@@ -258,7 +258,7 @@ public class GroundStationMapsActivity extends FragmentActivity implements View.
 
                 @Override
                 public void onResult(DJIGroundStationTypeDef.GroundStationResult result) {
-                    // TODO Auto-generated method stub
+
                     String ResultsString = "pause result =" + result.toString();
                     handler.sendMessage(handler.obtainMessage(SHOWTOAST, ResultsString));
 
@@ -370,7 +370,7 @@ public class GroundStationMapsActivity extends FragmentActivity implements View.
 
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // TODO Auto-generated method stub
+
                 if (checkedId == R.id.finishNone) {
                     actionAfterFinishTask = DJIGroundStationTypeDef.DJIGroundStationFinishAction.None;
                 } else if (checkedId == R.id.finishGoHome) {
@@ -387,7 +387,7 @@ public class GroundStationMapsActivity extends FragmentActivity implements View.
 
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // TODO Auto-generated method stub
+
                 if (checkedId == R.id.headingNext) {
                     heading = DJIGroundStationTypeDef.DJIGroundStationMovingMode.GSHeadingTowardNextWaypoint;
                 } else if (checkedId == R.id.headingInitDirec) {
@@ -441,7 +441,7 @@ public class GroundStationMapsActivity extends FragmentActivity implements View.
 
             @Override
             public void onResult(DJIGroundStationTypeDef.GroundStationResult result) {
-                // TODO Auto-generated method stub
+
                 String ResultsString = "return code =" + result.toString();
                 handler.sendMessage(handler.obtainMessage(SHOWTOAST, ResultsString));
 
@@ -450,7 +450,7 @@ public class GroundStationMapsActivity extends FragmentActivity implements View.
 
                         @Override
                         public void onResult(DJIGroundStationTypeDef.GroundStationResult result) {
-                            // TODO Auto-generated method stub
+
                             String ResultsString = "return code =" + result.toString();
                             handler.sendMessage(handler.obtainMessage(SHOWTOAST, ResultsString));
                         }
@@ -477,7 +477,7 @@ public class GroundStationMapsActivity extends FragmentActivity implements View.
 
             @Override
             public void onResult(DJIGroundStationTypeDef.GroundStationResult result) {
-                // TODO Auto-generated method stub
+
                 String ResultsString = "return code =" + result.toString();
                 handler.sendMessage(handler.obtainMessage(SHOWTOAST, ResultsString));
             }
@@ -489,7 +489,7 @@ public class GroundStationMapsActivity extends FragmentActivity implements View.
 
             @Override
             public void onResult(DJIGroundStationTypeDef.GroundStationResult result) {
-                // TODO Auto-generated method stub
+
                 String ResultsString = "return code =" + result.toString();
                 handler.sendMessage(handler.obtainMessage(SHOWTOAST, ResultsString));
 
@@ -497,7 +497,7 @@ public class GroundStationMapsActivity extends FragmentActivity implements View.
 
                     @Override
                     public void onResult(DJIGroundStationTypeDef.GroundStationResult result) {
-                        // TODO Auto-generated method stub
+
                         String ResultsString = "return code =" + result.toString();
                         handler.sendMessage(handler.obtainMessage(SHOWTOAST, ResultsString));
                     }

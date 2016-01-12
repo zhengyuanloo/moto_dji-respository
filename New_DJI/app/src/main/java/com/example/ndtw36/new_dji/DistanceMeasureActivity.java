@@ -69,7 +69,6 @@ public class DistanceMeasureActivity extends AppCompatActivity {
             @Override
             public void onResult(byte[] videoBuffer, int size)
             {
-                // TODO Auto-generated method stub
                 mDjiGLSurfaceView.setDataToDecoder(videoBuffer, size);
             }
 
@@ -83,7 +82,6 @@ public class DistanceMeasureActivity extends AppCompatActivity {
 
             @Override
             public void onError(int error) {
-                // TODO Auto-generated method stub
                 //Log.d(TAG, "Gimbal error = "+error);
             }
 
@@ -94,7 +92,6 @@ public class DistanceMeasureActivity extends AppCompatActivity {
 
             @Override
             public void onResult(DJIGimbalAttitude attitude) {
-                // TODO Auto-generated method stub
                 //Log.d(TAG, attitude.toString());
                 pitch=attitude.pitch;
             }
@@ -136,8 +133,6 @@ public class DistanceMeasureActivity extends AppCompatActivity {
 
                         @Override
                         public void onResult(DJIGroundStationTypeDef.GroundStationResult result) {
-                            // TODO Auto-generated method stub
-
                         }
                     });
                 }
@@ -154,15 +149,9 @@ public class DistanceMeasureActivity extends AppCompatActivity {
 
                     @Override
                     public void onResult(DJIGroundStationTypeDef.GroundStationResult result) {
-                        // TODO Auto-generated method stub
-                        String ResultsString = "opens result =" + result.toString();
-
                         DJIDrone.getDjiGroundStation().oneKeyFly(new DJIGroundStationExecuteCallBack() {
                             @Override
                             public void onResult(DJIGroundStationTypeDef.GroundStationResult result) {
-                                // TODO Auto-generated method stub
-
-                                String ResultsString = "one key fly result =" + result.toString();
 
                                 if (result == DJIGroundStationTypeDef.GroundStationResult.GS_Result_Success) {
                                     //
@@ -281,7 +270,7 @@ public class DistanceMeasureActivity extends AppCompatActivity {
 
                                 @Override
                                 public void run() {
-                                    // TODO Auto-generated method stub
+
                                     etPitch.setText("0");
                                 }
                             });
@@ -424,7 +413,7 @@ public class DistanceMeasureActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        // TODO Auto-generated method stub
+
         mDjiGLSurfaceView.resume();
         DJIDrone.getDjiGimbal().startUpdateTimer(1000);
         DJIDrone.getDjiMC().startUpdateTimer(1000);
@@ -433,7 +422,7 @@ public class DistanceMeasureActivity extends AppCompatActivity {
     }
 
     protected void onPause() {
-        // TODO Auto-generated method stub
+
         mDjiGLSurfaceView.pause();
 
         DJIDrone.getDjiGimbal().stopUpdateTimer();

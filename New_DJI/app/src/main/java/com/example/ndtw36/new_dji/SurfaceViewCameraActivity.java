@@ -73,7 +73,6 @@ public class SurfaceViewCameraActivity extends AppCompatActivity implements Surf
                 handlerTimer.postDelayed(this, TIME);
 
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -158,21 +157,20 @@ public class SurfaceViewCameraActivity extends AppCompatActivity implements Surf
     @Override
     protected void onStop()
     {
-        // TODO Auto-generated method stub
+
         super.onStop();
     }
 
     @Override
     protected void onDestroy()
     {
-        // TODO Auto-generated method stub
+
         try
         {
             DJIDrone.getDjiCamera().setReceivedVideoDataCallBack(null);
         }
         catch (Exception e)
         {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 

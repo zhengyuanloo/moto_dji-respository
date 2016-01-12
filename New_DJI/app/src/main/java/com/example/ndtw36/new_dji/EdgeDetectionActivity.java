@@ -16,7 +16,7 @@ import com.example.ndtw36.new_dji.EdgeDetect.bitmap_manip.tools.ImageFileReader;
 
 import java.io.File;
 
-
+//this class is edge detection on image/photo
 public class EdgeDetectionActivity extends AppCompatActivity {
 
     final static String INPUT_IMG_DIR  = Environment.getExternalStorageDirectory().getPath() + "/DJI/com.example.ndtw36.new_dji/CACHE_IMAGE/";
