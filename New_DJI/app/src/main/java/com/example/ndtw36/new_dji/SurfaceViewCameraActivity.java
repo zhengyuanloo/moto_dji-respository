@@ -23,10 +23,9 @@ import dji.sdk.api.Camera.DJICameraDecodeTypeDef;
 import dji.sdk.api.DJIDrone;
 import dji.sdk.api.mediacodec.DJIVideoDecoder;
 import dji.sdk.interfaces.DJIReceivedVideoDataCallBack;
-import dji.sdk.widget.DjiGLSurfaceView;
 
 
-//this class is similar to cameraActivity
+//this class is similar to cameraActivity (use hardware decoder)
 public class SurfaceViewCameraActivity extends AppCompatActivity implements SurfaceHolder.Callback {
 
     private static final String TAG = "SurfaceViewCameraActivity";

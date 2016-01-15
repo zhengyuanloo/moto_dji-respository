@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
+//face detection (use in Nexus 7)
 public class FaceActivity extends AppCompatActivity implements CvCameraViewListener2 {
 
     private static final String TAG ="FaceActivty" ;

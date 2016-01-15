@@ -8,8 +8,6 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -17,13 +15,12 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.ndtw36.new_dji.EdgeDetect.bitmap_manip.niblack.EdgeDetection;
-
 import dji.sdk.api.DJIDrone;
 import dji.sdk.api.DJIDroneTypeDef;
 import dji.sdk.api.DJIError;
 import dji.sdk.interfaces.DJIGeneralListener;
 
+//initial drone type and display some activity such as CameraActivity, GroundStationActivity, and so on
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";

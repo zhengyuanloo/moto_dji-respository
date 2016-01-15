@@ -42,6 +42,8 @@ import dji.sdk.api.MainController.DJIMainControllerSystemState;
 import dji.sdk.interfaces.DJIGroundStationExecuteCallBack;
 import dji.sdk.interfaces.DJIMcuUpdateStateCallBack;
 
+
+// set flight path by using waypoint and set fly speed, altitude and so on
 public class GroundStationMapsActivity extends FragmentActivity implements View.OnClickListener, GoogleMap.OnMapClickListener, OnMapReadyCallback {
 
     protected static final String TAG = "GroundStationMapsActivity";

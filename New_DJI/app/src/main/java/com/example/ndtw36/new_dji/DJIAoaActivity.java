@@ -4,14 +4,13 @@ import android.content.Intent;
 import android.hardware.usb.UsbManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import dji.log.DJILogHelper;
 import dji.midware.data.manager.P3.ServiceManager;
 import dji.midware.usb.P3.DJIUsbAccessoryReceiver;
 import dji.midware.usb.P3.UsbAccessoryService;
 
+//implement connection or having USB connection service
 public class DJIAoaActivity extends AppCompatActivity {
 
     private static boolean isStarted = false;

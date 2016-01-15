@@ -34,6 +34,7 @@ import dji.sdk.interfaces.DJIMcuUpdateStateCallBack;
 import dji.sdk.interfaces.DJIReceivedVideoDataCallBack;
 import dji.sdk.widget.DjiGLSurfaceView;
 
+//control speed flying drone
 public class AutoFlyControllActivity extends AppCompatActivity {
 
     private static final String TAG = "AutoFlyControllActivity";

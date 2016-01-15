@@ -1,6 +1,5 @@
 package com.example.ndtw36.new_dji;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;

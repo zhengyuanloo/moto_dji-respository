@@ -37,6 +37,7 @@ import dji.sdk.interfaces.DJIExecuteResultCallback;
 import dji.sdk.interfaces.DJIMediaFetchCallBack;
 import dji.sdk.interfaces.DJIReceivedFileDataCallBack;
 
+//check media data from drone memory and sync it
 public class DownloadMediaActivity extends AppCompatActivity {
 
     private static final String TAG ="DownloadMediaActivity";

@@ -27,6 +27,7 @@ import dji.sdk.interfaces.DJIExecuteResultCallback;
 import dji.sdk.interfaces.DJIReceivedVideoDataCallBack;
 import dji.sdk.widget.DjiGLSurfaceView;
 
+//image processing(included capture image and record video)
 public class CameraActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "CameraActivity";

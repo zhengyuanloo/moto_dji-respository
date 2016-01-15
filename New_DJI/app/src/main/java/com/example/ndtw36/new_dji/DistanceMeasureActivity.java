@@ -26,6 +26,7 @@ import dji.sdk.widget.DjiGLSurfaceView;
 
 import static java.lang.Math.pow;
 
+//measure distance use trigonometry formula (use pitch angle drone camera)
 public class DistanceMeasureActivity extends AppCompatActivity {
 
     private static final String TAG = "DistanceMeaureActivity";

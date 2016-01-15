@@ -10,20 +10,15 @@ import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Mat;
-import org.opencv.core.MatOfKeyPoint;
 import org.opencv.core.MatOfPoint;
-import org.opencv.core.MatOfRect;
 import org.opencv.core.Point;
-import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
-import org.opencv.core.Size;
-import org.opencv.features2d.FeatureDetector;
-import org.opencv.features2d.Features2d;
 import org.opencv.imgproc.Imgproc;
-import org.opencv.objdetect.CascadeClassifier;
 
 import static org.opencv.android.CameraBridgeViewBase.*;
 
+
+//detect corner of object use Nexus 7 camera
 public class CornerDetectionActivity extends AppCompatActivity implements CvCameraViewListener2 {
 
     private static final String TAG ="CornerDetectionActivity" ;

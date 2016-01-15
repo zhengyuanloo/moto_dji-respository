@@ -25,7 +25,7 @@ import org.opencv.imgproc.Imgproc;
 import java.util.ArrayList;
 import java.util.List;
 
-//Measure distance between the object and drone by detect color object
+//Measure distance between the object and drone by detect color object (use Nexus 7 camera)
 public class ObjectTrackingActivity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2,View.OnTouchListener {
 
     private static final String TAG ="ObjectTrackerActivity" ;
@@ -166,7 +166,7 @@ public class ObjectTrackingActivity extends AppCompatActivity implements CameraB
                 //Convert back to MatOfPoint
                 MatOfPoint points = new MatOfPoint( approxCurve.toArray() );
 
-                // Get bounding rect of contour
+                // Get bounding rect of contour //get pixel image object
                 Rect rect = Imgproc.boundingRect(points);
 
                 // draw enclosing rectangle (all same color, but you could use variable i to make them unique)
@@ -184,6 +184,7 @@ public class ObjectTrackingActivity extends AppCompatActivity implements CameraB
         return mRgba;
     }
 
+    //calcuate distance after have focul length and object's width
     public double distanceCal(double width,double focal,int perwidth){
         return (width*focal)/perwidth;
     }

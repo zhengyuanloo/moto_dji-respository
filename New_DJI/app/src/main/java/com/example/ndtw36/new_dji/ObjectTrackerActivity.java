@@ -23,11 +23,10 @@ import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
 import java.util.List;
-import java.util.Vector;
 
 import static org.opencv.android.CameraBridgeViewBase.*;
 
-//Object detection using color detection
+//Object detection using color detection (use in Nexus 7 camera)
 public class ObjectTrackerActivity extends AppCompatActivity implements CvCameraViewListener2,OnTouchListener{
 
     private static final String TAG ="ObjectTrackerActivity" ;

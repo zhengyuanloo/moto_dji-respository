@@ -14,6 +14,10 @@ import java.util.List;
 /**
  * Created by NDTW36 on 11/27/2015.
  */
+
+//associated with ObjectTrackActivity and ObjectTrackingActivity
+//detect color after click or select on screen device
+
 public class ColorBlobDetector {
 
     // Lower and Upper bounds for range checking in HSV color space

@@ -20,7 +20,7 @@ import dji.sdk.api.mediacodec.DJIVideoDecoder;
 import dji.sdk.interfaces.DJIReceivedVideoDataCallBack;
 import dji.sdk.widget.DjiGLSurfaceView;
 
-//This class is similar to SurfaceViewCamera
+//This class is similar to SurfaceViewCamera (use hardware decoder)
 public class TextureCameraActivity extends AppCompatActivity implements TextureView.SurfaceTextureListener {
 
     private static final String TAG = "TextureCameraActivity";
@@ -64,7 +64,6 @@ public class TextureCameraActivity extends AppCompatActivity implements TextureV
     Runnable runnable = new Runnable(){
         @Override
         public void run() {
-            // handler自带方法实现定时器
             try {
 
                 handlerTimer.postDelayed(this, TIME);
